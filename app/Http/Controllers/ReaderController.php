@@ -274,7 +274,7 @@ class ReaderController extends Controller
         if ($page >= $lastPage) {
             $isLastPage = true;
             $nextPage = 1;
-            return view('reader.page-genre', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'genreName', 'slug'));
+            return view('reader.page-genre', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'genreName', 'slug','siteTitle', 'siteDescription', 'siteKeywords'));
         }
         
         $siteTitle = "Komiksea - ". $genreName;
