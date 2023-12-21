@@ -3,7 +3,7 @@
     <div class="postbody">
         <div class="bixbox">
             <div class="releases">
-                <h2>List Komik Genre {{ $genreName }}</h2>
+                <h2>List Komik Genre {{ $genre->name }}</h2>
             </div>
             <div class="listupd stsven">
                 @foreach ($comics as $comic)

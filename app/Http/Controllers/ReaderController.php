@@ -255,33 +255,37 @@ class ReaderController extends Controller
     {
         $perPage = 20;
         $offset = ($page - 1) * $perPage;
-    
-        $totalComics = Comic::count();
-        $comics = Comic::skip($offset)->take($perPage)
-            ->select('comics.*')
-            ->join('comic_genres as cg', 'cg.comic_id', '=', 'comics.id')
-            ->join('genres as g', 'g.id', '=', 'cg.genre_id')
-            ->where('g.slug', ucfirst($slug))
-            ->orderBy('comics.updated_at', 'DESC')
+
+        // Menggunakan relasi jika ada
+        $genre = Genre::where('slug', ucfirst($slug))->first();
+        if (!$genre) {
+            abort(404); // Menangani jika genre tidak ditemukan
+        }
+
+        $totalComics = $genre->comics()->count();
+        $comics = $genre->comics()
+            ->skip($offset)->take($perPage)
+            ->orderBy('updated_at', 'DESC')
             ->get();
 
         $lastPage = ceil($totalComics / $perPage);
         $isLastPage = false;
         $nextPage = $page + 1;
         $previousPage = $page - 1;
-        $genreName = Genre::where('slug', $slug)
-            ->first()->name;
+
+        // Variabel deklarasi awal
+        $siteTitle = "Komiksea - " . $genre->name;
+        $siteDescription = "Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia";
+        $siteKeywords = "Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa";
+
         if ($page >= $lastPage) {
             $isLastPage = true;
             $nextPage = 1;
-            return view('reader.page-genre', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'genreName', 'slug','siteTitle', 'siteDescription', 'siteKeywords'));
         }
-        
-        $siteTitle = "Komiksea - ". $genreName;
-        $siteDescription = "Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia";
-        $siteKeywords = "Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa";
-        return view('reader.page-genre', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'genreName', 'slug', 'siteTitle', 'siteDescription', 'siteKeywords'));
+
+        return view('reader.page-genre', compact('genre','comics', 'isLastPage', 'nextPage', 'previousPage','page', 'slug', 'siteTitle', 'siteDescription', 'siteKeywords'));
     }
+
 
     function formatNumber($number)
     {
