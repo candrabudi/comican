@@ -10,6 +10,7 @@ use App\Models\ComicChapter;
 use App\Models\ComicGenre;
 use Spatie\Sitemap\SitemapGenerator;
 use Spatie\Crawler\Crawler;
+use App\Models\Setting;
 use DB;
 use SEO;
 class ReaderController extends Controller
@@ -17,9 +18,9 @@ class ReaderController extends Controller
     public function index()
     {
         $setting = Setting::first();
-        SEO::setTitle($setting->site_title);
-        SEO::setDescription($setting->site_description);
-        SEO::metatags()->addKeyword([$setting->site_keywords]);
+        $siteTitle = $setting->site_title;
+        $siteDescription = $setting->site_description;
+        $siteKeywords = $setting->site_keywords;
         $comics = Comic::orderBy('updated_at', 'DESC')
             ->take(20)
             ->get();
@@ -28,20 +29,21 @@ class ReaderController extends Controller
             ->with('comicGenres')
             ->get();
 
-        return view('reader.index', compact('comics', 'comicSlider'));
+        return view('reader.index', compact('comics', 'comicSlider', 'siteTitle', 'siteDescription', 'siteKeywords'));
     }
     
     public function searchComic(Request $request)
     {
-        // SEO::setTitle('Komiksea - Tempatnya Baca Komik Online Bahasa Indonesia');
-        // SEO::setDescription('Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia');
-        // SEO::metatags()->addKeyword(['Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa']);
+        $setting = Setting::first();
+        $siteTitle = $setting->site_title;
+        $siteDescription = $setting->site_description;
+        $siteKeywords = $setting->site_keywords;
         $comics = Comic::where('title', 'LIKE', '%'.$request->search.'%')
             ->orderBy('updated_at', 'DESC')
             ->take(20)
             ->get();
 
-        return view('reader.search', compact('comics'));
+        return view('reader.search', compact('comics', 'siteTitle', 'siteDescription', 'siteKeywords'));
     }
 
     public function pageManga()

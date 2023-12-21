@@ -2,8 +2,10 @@
 <html lang="en-US">
 
 <head>
-    <title>Title</title>
+    <title>{{ $siteTitle }}</title>
     <link rel="canonical" href="https://komiksea.com/" />
+    <meta name="description" content="{{ $siteDescription }}">
+    <meta name="keywords" content="{{ $siteKeywords }}">
 	<meta property="og:locale" content="en_US" />
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="Komiksea" />

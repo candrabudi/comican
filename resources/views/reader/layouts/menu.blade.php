@@ -34,16 +34,11 @@
             <div class="clear"></div>
         </nav>
         <div class="searchx minmb">
-            <form action="https://seataku.com/" id="form" method="get" itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction">
-                <meta itemprop="target" content="https://seataku.com/?s={query}" />
-                <input id="s" itemprop="query-input" class="search-live" type="text" placeholder="Search"
-                    name="s" />
-                <button type="submit" id="submit" aria-label="search">
-                    <i class="fas fa-search" aria-hidden="true"></i>
-                </button>
-                <div class="srcmob srccls">
-                    <i class="fas fa-times-circle"></i>
-                </div>
+            <form action="{{ route('reader.search') }}" id="form" method="get" itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction">
+                <input id="s" itemprop="query-input" class="search-live" type="text" placeholder="Search" name="search" />
+                <button type="submit" id="submit" aria-label="search"><i class="fas fa-search"
+                        aria-hidden="true"></i></button>
+                <div class="srcmob srccls"><i class="fas fa-times-circle"></i></div>
             </form>
         </div>
         <div class="srcmob">
