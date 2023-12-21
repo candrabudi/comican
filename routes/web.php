@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MangaController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\ReaderController;
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,8 @@ Route::get('/manhwa/{page}', [ReaderController::class, 'pageManhwaPagination'])-
 Route::get('/chapter/{slug}', [ReaderController::class, 'readChapter'])->name('reader.chapter');
 Route::get('/komik/{page}', [ReaderController::class, 'pageComic'])->name('reader.comic.page');
 Route::get('/genre/{slug}/{page}', [ReaderController::class, 'pageGenre'])->name('reader.genre.page');
+
+Route::get('/error', [PageController::class, 'noFound'])->name('page.notfound');
 
 Route::post('/login/process', [AuthController::class, 'loginProcess'])->name('login.process');
 Auth::routes();

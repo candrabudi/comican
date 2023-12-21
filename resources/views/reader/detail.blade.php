@@ -64,21 +64,21 @@
             text-decoration: none
         }
     </style>
-    <link rel='stylesheet' id='style-css' href='{{ asset('reader/css/style.css') }}' type='text/css' media='all' />
-    <link rel='stylesheet' id='lightstyle-css' href='{{ asset('reader/css/lightmode.css') }}' type='text/css'
+    <link rel='stylesheet' id='style-css' href='{{ asset('mangareader/css/style.css') }}' type='text/css' media='all' />
+    <link rel='stylesheet' id='lightstyle-css' href='{{ asset('mangareader/css/lightmode.css') }}' type='text/css'
         media='all' />
-    <link rel='stylesheet' id='swiper-css' href='{{ asset('reader/css/swipper.min.css') }}' type='text/css'
+    <link rel='stylesheet' id='swiper-css' href='{{ asset('mangareader/css/swipper.min.css') }}' type='text/css'
         media='all' />
-    <script type="text/javascript" src="{{ asset('reader/js/jquery.min.js') }}" id="jquery-js"></script>
-    <script type="text/javascript" src="{{ asset('reader/js/function.js') }}" id="tsfn_scripts-js"></script>
-    <script type="text/javascript" src="{{ asset('reader/js/tab.js') }}" id="tabs-js"></script>
+    <script type="text/javascript" src="{{ asset('mangareader/js/jquery.min.js') }}" id="jquery-js"></script>
+    <script type="text/javascript" src="{{ asset('mangareader/js/function.js') }}" id="tsfn_scripts-js"></script>
+    <script type="text/javascript" src="{{ asset('mangareader/js/tab.js') }}" id="tabs-js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('reader/css/main.css') }}">
-    <script type="text/javascript" src="{{ asset('reader/js/owl.carousel.min.js') }}" id="owl-carousel-js"></script>
+    <link rel="stylesheet" href="{{ asset('mangareader/css/main.css') }}">
+    <script type="text/javascript" src="{{ asset('mangareader/js/owl.carousel.min.js') }}" id="owl-carousel-js"></script>
     <script>
         $(document).ready(function() {
             $(".shme").click(function() {

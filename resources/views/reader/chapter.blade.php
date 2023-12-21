@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en-US">
-    <title></title>
+    <title>{{ SEOMeta::getTitle() }}</title>
+    <meta name="description" content="{{ SEOMeta::getDescription() }}">
+    <meta name="keywords" content="{{ implode(', ', SEOMeta::getKeywords()) }}">
     <link rel="canonical" href="https://komiksea.com/" />
 	<meta property="og:locale" content="en_US" />
 	<meta property="og:type" content="website" />
