@@ -276,10 +276,11 @@ class ReaderController extends Controller
             $nextPage = 1;
             return view('reader.page-genre', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'genreName', 'slug'));
         }
-        // SEO::setTitle('Komiksea - Baca Komik '.$genreName.' Bahasa Indonesia');
-        // SEO::setDescription('Komiksea - '.$comic->title);
-        // SEO::metatags()->addKeyword(['Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Komiksea Genre'.$genreName]);
-        return view('reader.page-genre', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'genreName', 'slug'));
+        
+        $siteTitle = "Komiksea - ". $genreName;
+        $siteDescription = "Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia";
+        $siteKeywords = "Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa";
+        return view('reader.page-genre', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'genreName', 'slug', 'siteTitle', 'siteDescription', 'siteKeywords'));
     }
 
     function formatNumber($number)
