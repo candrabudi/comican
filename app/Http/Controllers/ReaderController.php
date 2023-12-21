@@ -49,9 +49,9 @@ class ReaderController extends Controller
     public function pageManga()
     {
         $type = 'Manga';
-        SEO::setTitle('Komiksea - Baca Manga Bahasa Indonesia');
-        SEO::setDescription('Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia');
-        SEO::metatags()->addKeyword(['Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa']);
+        $siteTitle = "Komiksea - Baca Manga Bahasa Indonesia";
+        $siteDescription = "Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia";
+        $siteKeywords = "Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa";
         $perPage = 20;
         $totalComics = Comic::count();
         $comics = Comic::skip(0)->take($perPage)
@@ -59,15 +59,15 @@ class ReaderController extends Controller
             ->orderBy('updated_at', 'DESC')
             ->get();
 
-        return view('reader.page-manga', compact('type', 'comics', 'totalComics'));
+        return view('reader.page-manga', compact('type', 'comics', 'totalComics', 'siteTitle', 'siteDescription', 'siteKeywords'));
     }
 
     public function pageMangaPagination($page)
     {
         $type = "Manga";
-        SEO::setTitle('Komiksea - Baca Manga Bahasa Indonesia');
-        SEO::setDescription('Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia');
-        SEO::metatags()->addKeyword(['Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa']);
+        $siteTitle = "Komiksea - Baca Manga Bahasa Indonesia";
+        $siteDescription = "Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia";
+        $siteKeywords = "Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa";
         $perPage = 20;
         $offset = ($page - 1) * $perPage;
     
@@ -84,18 +84,18 @@ class ReaderController extends Controller
         if ($page >= $lastPage) {
             $isLastPage = true;
             $nextPage = 1;
-            return view('reader.page-manga-pagination', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page'));
+            return view('reader.page-manga-pagination', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords'));
         }
     
-        return view('reader.page-manga-pagination', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page'));
+        return view('reader.page-manga-pagination', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords'));
     }
     
     public function pageManhwa()
     {
         $type = "Manhwa";
-        SEO::setTitle('Komiksea - Baca Manhwa Bahasa Indonesia');
-        SEO::setDescription('Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia');
-        SEO::metatags()->addKeyword(['Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa']);
+        $siteTitle = "Komiksea - Baca Manhwa Bahasa Indonesia";
+        $siteDescription = "Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia";
+        $siteKeywords = "Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa";
         $perPage = 20;
         $totalComics = Comic::count();
         $comics = Comic::skip(0)->take($perPage)
@@ -103,15 +103,15 @@ class ReaderController extends Controller
             ->orderBy('updated_at', 'DESC')
             ->get();
 
-        return view('reader.page-manga', compact('type', 'comics', 'totalComics'));
+        return view('reader.page-manga', compact('type', 'comics', 'totalComics', 'siteTitle', 'siteDescription', 'siteKeywords'));
     }
 
     public function pageManhwaPagination($page)
     {
         $type = "Manhwa";
-        SEO::setTitle('Komiksea - Baca Manhwa Bahasa Indonesia');
-        SEO::setDescription('Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia');
-        SEO::metatags()->addKeyword(['Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa']);
+        $siteTitle = "Komiksea - Baca Manhwa Bahasa Indonesia";
+        $siteDescription = "Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia";
+        $siteKeywords = "Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa";
         $perPage = 20;
         $offset = ($page - 1) * $perPage;
     
@@ -128,17 +128,17 @@ class ReaderController extends Controller
         if ($page >= $lastPage) {
             $isLastPage = true;
             $nextPage = 1;
-            return view('reader.page-manga-pagination', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page'));
+            return view('reader.page-manga-pagination', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords'));
         }
     
-        return view('reader.page-manga-pagination', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page'));
+        return view('reader.page-manga-pagination', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords'));
     }
 
     public function pageComic($page)
     {
-        SEO::setTitle('Komiksea - Baca Komik Bahasa Indonesia');
-        SEO::setDescription('Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia');
-        SEO::metatags()->addKeyword(['Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa']);
+        $siteTitle = "Komiksea - Baca Manhwa Bahasa Indonesia";
+        $siteDescription = "Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia";
+        $siteKeywords = "Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa";
         $perPage = 20;
         $offset = ($page - 1) * $perPage;
     
@@ -154,10 +154,10 @@ class ReaderController extends Controller
         if ($page >= $lastPage) {
             $isLastPage = true;
             $nextPage = 1;
-            return view('reader.page-comic', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page'));
+            return view('reader.page-comic', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords'));
         }
     
-        return view('reader.page-comic', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page'));
+        return view('reader.page-comic', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords'));
     }
     
     public function manhwaDetail(Request $request, $slug)
