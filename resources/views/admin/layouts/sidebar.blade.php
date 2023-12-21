@@ -15,13 +15,19 @@
         <li class="menu-item">
             <a href="{{ route('sea.dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
-                <div data-i18n="Dashboards">Dashboards</div>
+                <div data-i18n="Dashboard">Dashboard</div>
             </a>
         </li>
         <li class="menu-item">
             <a href="{{ route('sea.comic') }}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-file"></i>
                 <div data-i18n="Komik">Komik</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{ route('sea.setting') }}" class="menu-link">
+                <i class="menu-icon tf-icons mdi mdi-cog"></i>
+                <div data-i18n="Pengaturan">Pengaturan</div>
             </a>
         </li>
     </ul>

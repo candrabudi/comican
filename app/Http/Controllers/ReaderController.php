@@ -16,9 +16,10 @@ class ReaderController extends Controller
 {
     public function index()
     {
-        // SEO::setTitle('Komiksea - Tempatnya Baca Komik Online Bahasa Indonesia');
-        // SEO::setDescription('Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia');
-        // SEO::metatags()->addKeyword(['Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa']);
+        $setting = Setting::first();
+        SEO::setTitle($setting->site_title);
+        SEO::setDescription($setting->site_description);
+        SEO::metatags()->addKeyword([$setting->site_keywords]);
         $comics = Comic::orderBy('updated_at', 'DESC')
             ->take(20)
             ->get();

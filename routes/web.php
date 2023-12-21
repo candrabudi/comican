@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MangaController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\ReaderController;
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,9 @@ Route::group(['prefix' => 'sea'], function($router) {
         $router->post('/crawl/process', [MangaController::class, 'comicProcess'])->name('sea.comic.crawl.process');
         $router->post('/crawl/chapter/process', [MangaController::class, 'comicChapterProcess'])->name('sea.comic.crawl.chapter.process');
         $router->post('/crawl/all/chapter', [MangaController::class, 'crawlAllChapter'])->name('sea.comic.crawl.chapter.all');
+    });
+    Route::group(['prefix' => 'settings'], function($router) {
+        $router->get('/', [SettingController::class, 'index'])->name('sea.setting');
     });
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
