@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MangaController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\HtmlController;
 use App\Http\Controllers\ReaderController;
 use App\Jobs\GenerateSitemap;
 /*
@@ -54,6 +55,12 @@ Route::group(['prefix' => 'sea'], function($router) {
     });
     Route::group(['prefix' => 'settings'], function($router) {
         $router->get('/', [SettingController::class, 'index'])->name('sea.setting');
+    });
+    Route::group(['prefix' => 'htmlscript'], function($router) {
+        $router->get('/', [HtmlController::class, 'index'])->name('sea.htmlscript');
+        $router->get('/datatable', [HtmlController::class, 'datatable'])->name('sea.htmlscript.datatable');
+        $router->get('/create', [HtmlController::class, 'create'])->name('sea.htmlscript.create');
+        $router->post('/store', [HtmlController::class, 'store'])->name('sea.htmlscript.store');
     });
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
