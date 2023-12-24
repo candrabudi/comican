@@ -101,9 +101,9 @@
     <div class="mainholder">
       @include('comics.template.menu')
       
-      <div id="content">
+      {{-- <div id="content"> --}}
         @yield('content')
-      </div>
+      {{-- </div> --}}
       <div id="footer">
         <footer
           id="colophon"
