@@ -155,7 +155,7 @@
                             src="https://mangareader.themesia.com/wp-content/uploads/2020/12/rn728.png"
                             data-src="https://mangareader.themesia.com/wp-content/uploads/2020/12/rn728.png"
                             alt="sample placement"></div>
-                    @include('reader.home.related')
+                    @include('comics.components.related')
                     <div id="comments" class="bixbox comments-area">
                         <div class="releases">
                             <h2><span>Comment</span></h2>
