@@ -35,7 +35,7 @@ class ReaderController extends Controller
             ->with('comicGenres')
             ->get();
 
-        return view('comics.home.index', compact('comics', 'comicSlider', 'siteTitle', 'siteDescription', 'siteKeywords'));
+        return view('comics.home.index', compact('comics', 'comicSlider'));
     }
     
     public function searchComic(Request $request)
@@ -49,7 +49,7 @@ class ReaderController extends Controller
         SEOMeta::setDescription($setting->site_description);
         OpenGraph::setDescription($setting->site_description);
         OpenGraph::setTitle($setting->site_title);
-        return view('comics.pages.search', compact('comics', 'siteTitle', 'siteDescription', 'siteKeywords'));
+        return view('comics.pages.search', compact('comics'));
     }
 
     public function comicDetail(Request $request, $type,$slug)
@@ -102,7 +102,7 @@ class ReaderController extends Controller
             ->orderBy('updated_at', 'DESC')
             ->get();
 
-        return view('comics.pages.typecomic', compact('type', 'comics', 'totalComics', 'siteTitle', 'siteDescription', 'siteKeywords', 'originalType'));
+        return view('comics.pages.typecomic', compact('type', 'comics', 'totalComics', 'originalType'));
     }
 
     public function viewComicTypePagination($type,$page)
@@ -130,10 +130,10 @@ class ReaderController extends Controller
         if ($page >= $lastPage) {
             $isLastPage = true;
             $nextPage = 1;
-            return view('comics.pages.typecomic', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords', 'originalType'));
+            return view('comics.pages.typecomic', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'originalType'));
         }
     
-        return view('comics.pages.typecomic', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords', 'originalType'));
+        return view('comics.pages.typecomic', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'originalType'));
     }
 
     public function pageComic($page)
@@ -158,10 +158,10 @@ class ReaderController extends Controller
         if ($page >= $lastPage) {
             $isLastPage = true;
             $nextPage = 1;
-            return view('reader.page-comic', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords'));
+            return view('reader.page-comic', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page'));
         }
     
-        return view('reader.page-comic', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords'));
+        return view('reader.page-comic', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page'));
     }
 
     public function viewAll($page)
@@ -186,10 +186,10 @@ class ReaderController extends Controller
         if ($page >= $lastPage) {
             $isLastPage = true;
             $nextPage = 1;
-            return view('comics.pages.viewall', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords'));
+            return view('comics.pages.viewall', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page'));
         }
     
-        return view('comics.pages.viewall', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords'));
+        return view('comics.pages.viewall', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page'));
     }
 
     public function readChapter($slug)
@@ -258,7 +258,7 @@ class ReaderController extends Controller
             $nextPage = 1;
         }
 
-        return view('comics.pages.genre', compact('genre','comics', 'isLastPage', 'nextPage', 'previousPage','page', 'slug', 'siteTitle', 'siteDescription', 'siteKeywords'));
+        return view('comics.pages.genre', compact('genre','comics', 'isLastPage', 'nextPage', 'previousPage','page', 'slug'));
     }
 
 
