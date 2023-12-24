@@ -3,6 +3,13 @@
 
 <head>
     <title>{{ $siteTitle }}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#342a78" />
+    <meta name="msapplication-navbutton-color" content="#342a78" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#342a78" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href="https://komiksea.com/" />
     <meta name="description" content="{{ $siteDescription }}">
     <meta name="keywords" content="{{ $siteKeywords }}">
@@ -12,6 +19,7 @@
 	<meta property="og:url" content="https://komiksea.lol/" />
 	<meta property="og:site_name" content="Komiksea" />
 	<meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @include('reader.layouts.head')
 </head>
 
@@ -59,8 +67,9 @@
         </div>
     </div>
     <span class="scrollToTop"><span class="fas fa-angle-up"></span></span>
-
-    <script src="{{ asset('reader/js/swipper.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset('mangareader/js/swipper.min.js') }}"></script>
     <script>
         var swiper = new Swiper('.swiper-container', {
             centeredSlides: true,

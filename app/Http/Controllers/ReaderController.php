@@ -29,7 +29,7 @@ class ReaderController extends Controller
             ->with('comicGenres')
             ->get();
 
-        return view('reader.index', compact('comics', 'comicSlider', 'siteTitle', 'siteDescription', 'siteKeywords'));
+        return view('comics.home.index', compact('comics', 'comicSlider', 'siteTitle', 'siteDescription', 'siteKeywords'));
     }
     
     public function searchComic(Request $request)
@@ -44,6 +44,39 @@ class ReaderController extends Controller
             ->get();
 
         return view('reader.search', compact('comics', 'siteTitle', 'siteDescription', 'siteKeywords'));
+    }
+
+    public function comicDetail(Request $request, $type,$slug)
+    {
+        $browserId = $request->session()->getId();
+
+        $comic = Comic::where('slug', $slug)
+            ->where('type', $type)
+            ->first();
+
+        if (!$comic) {
+           return view('pages.404');
+        }
+
+        SEO::setTitle('Komiksea - '.$comic->title);
+        SEO::setDescription('Komiksea - '.$comic->title);
+        SEO::metatags()->addKeyword(['Komiksea', 'Komiksea me', 'Komikcast','Komiku', $comic->title]);
+
+        $viewed = ComicView::where('comic_id', $comic->id)
+            ->where('browser_id', $browserId)
+            ->count();
+
+        if ($viewed === 0) {
+            $comic->increment('view_count');
+
+            ComicView::create([
+                'comic_id' => $comic->id,
+                'browser_id' => $browserId,
+            ]);
+        }
+
+        $widthRating = $this->formatNumber($comic->rating);
+        return view('comics.pages.detail', compact('comic', 'widthRating'));
     }
 
     public function pageManga()
@@ -175,7 +208,6 @@ class ReaderController extends Controller
         SEO::setDescription('Komiksea - '.$comic->title);
         SEO::metatags()->addKeyword(['Komiksea', 'Komiksea me', 'Komikcast','Komiku', $comic->title]);
 
-        // Check if the browser ID has already viewed the comic
         $viewed = ComicView::where('comic_id', $comic->id)
             ->where('browser_id', $browserId)
             ->count();
@@ -218,7 +250,7 @@ class ReaderController extends Controller
         SEO::setDescription('Komiksea - '.$comic->title);
         SEO::metatags()->addKeyword(['Komiksea', 'Komiksea me', 'Komikcast','Komiku', $comic->title]);
         $widthRating = $this->formatNumber($comic->rating);
-        return view('reader.detail', compact('comic', 'widthRating'));
+        return view('comics.detail.manga', compact('comic', 'widthRating'));
     }
 
     public function readChapter($slug)
