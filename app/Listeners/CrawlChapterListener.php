@@ -16,7 +16,6 @@ class CrawlChapterListener implements ShouldQueue
 {
     public function handle(CrawlChapterEvent $event)
     {
-        Log::info("Kodok 1");
         $chapterId = $event->chapterId;
 
         $chapter = ComicChapterLink::find($chapterId);
