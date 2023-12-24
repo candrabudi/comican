@@ -3,15 +3,9 @@
     <div class="section">
         <div class="ts-wpop-series-gen">
             <ul class="ts-wpop-nav-tabs">
-                <li class="active">
-                    <span class="ts-wpop-tab" data-range="weekly">Weekly</span>
-                </li>
-                <li>
-                    <span class="ts-wpop-tab" data-range="monthly">Monthly</span>
-                </li>
-                <li>
-                    <span class="ts-wpop-tab" data-range="alltime">All</span>
-                </li>
+                <li class="active"><span class="ts-wpop-tab" data-range="weekly">Weekly</span></li>
+                <li><span class="ts-wpop-tab" data-range="monthly">Monthly</span></li>
+                <li><span class="ts-wpop-tab" data-range="alltime">All</span></li>
             </ul>
         </div>
         <div id="wpop-items">
@@ -21,3 +15,6 @@
         </div>
     </div>
 </div>
+<script>
+    ts_popular_widget.run(1701648983);
+</script>

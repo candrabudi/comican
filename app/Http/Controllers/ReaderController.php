@@ -297,7 +297,7 @@ class ReaderController extends Controller
             $nextPage = 1;
         }
 
-        return view('reader.page-genre', compact('genre','comics', 'isLastPage', 'nextPage', 'previousPage','page', 'slug', 'siteTitle', 'siteDescription', 'siteKeywords'));
+        return view('comics.pages.genre', compact('genre','comics', 'isLastPage', 'nextPage', 'previousPage','page', 'slug', 'siteTitle', 'siteDescription', 'siteKeywords'));
     }
 
 
