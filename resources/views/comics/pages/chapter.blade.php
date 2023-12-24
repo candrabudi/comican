@@ -71,20 +71,11 @@
                                                     rel="prev">
                                                     <i class="fas fa-angle-left"></i> Prev
                                                 </a>
-                                            @else
-                                                <a class="ch-prev-btn disabled" href="#/prev/" rel="prev">
-                                                    <i class="fas fa-angle-left"></i> Prev
-                                                </a>
                                             @endif
                                             @if ($nextChapter)
                                                 <a class="ch-next-btn"
                                                     href="{{ route('reader.chapter', $nextChapter->chapter_slug) }}"
-                                                    rel="next">
-                                                    Next <i class="fas fa-angle-right"></i>
-                                                </a>
-                                            @else
-                                                <a class="ch-next-btn disabled" href="#/next/" rel="next">
-                                                    Next <i class="fas fa-angle-right"></i>
+                                                    rel="next">Next <i class="fas fa-angle-right"></i>
                                                 </a>
                                             @endif
                                         </div>
@@ -120,11 +111,19 @@
                                 </span>
                                 <span class="amob"><span class="npv r">
                                         <div class="nextprev">
-                                            <a class="ch-prev-btn" href="#/prev/" rel="prev">
-                                                <i class="fas fa-angle-left"></i> Prev </a>
-                                            <a class="ch-next-btn" href="#/next/" rel="next">
-                                                Next <i class="fas fa-angle-right"></i>
-                                            </a>
+                                            @if ($previousChapter)
+                                                <a class="ch-prev-btn"
+                                                    href="{{ route('reader.chapter', $previousChapter->chapter_slug) }}"
+                                                    rel="prev">
+                                                    <i class="fas fa-angle-left"></i> Prev
+                                                </a>
+                                            @endif
+                                            @if ($nextChapter)
+                                                <a class="ch-next-btn"
+                                                    href="{{ route('reader.chapter', $nextChapter->chapter_slug) }}"
+                                                    rel="next">Next <i class="fas fa-angle-right"></i>
+                                                </a>
+                                            @endif
                                         </div>
                                     </span>
                                 </span>
@@ -170,11 +169,11 @@
     </div>
 @endsection
 @section('scripts')
-<script>
-    function redirectToChapter(select) {
-        var selectedOption = select.options[select.selectedIndex];
-        var url = selectedOption.value;
-        window.location.href = url;
-    }
-</script>
+    <script>
+        function redirectToChapter(select) {
+            var selectedOption = select.options[select.selectedIndex];
+            var url = selectedOption.value;
+            window.location.href = url;
+        }
+    </script>
 @endsection
