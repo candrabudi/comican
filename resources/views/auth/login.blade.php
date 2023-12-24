@@ -35,11 +35,11 @@
                 <div class="card p-2">
                     <div class="app-brand justify-content-center mt-5">
                         <a href="index.html" class="app-brand-link gap-2">
-                            <span class="app-brand-text demo text-heading fw-semibold">Komiksea</span>
+                            <span class="app-brand-text demo text-heading fw-semibold">Seataku</span>
                         </a>
                     </div>
                     <div class="card-body mt-2">
-                        <h4 class="mb-2">KomikSea! 👋</h4>
+                        <h4 class="mb-2">Seataku! 👋</h4>
                         <p class="mb-4">Login untuk mengelola komik</p>
 
                         <form id="formAuthentication" class="mb-3" action="{{ route('login.process') }}" method="POST">

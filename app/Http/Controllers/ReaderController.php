@@ -13,6 +13,8 @@ use Spatie\Crawler\Crawler;
 use App\Models\Setting;
 use DB;
 use SEO;
+use SEOMeta;
+use OpenGraph;
 class ReaderController extends Controller
 {
     public function index()
@@ -21,6 +23,10 @@ class ReaderController extends Controller
         $siteTitle = $setting->site_title;
         $siteDescription = $setting->site_description;
         $siteKeywords = $setting->site_keywords;
+        SEOMeta::setTitle($setting->site_title);
+        SEOMeta::setDescription($setting->site_description);
+        OpenGraph::setDescription($setting->site_description);
+        OpenGraph::setTitle($setting->site_title);
         $comics = Comic::orderBy('updated_at', 'DESC')
             ->take(20)
             ->get();
@@ -35,14 +41,14 @@ class ReaderController extends Controller
     public function searchComic(Request $request)
     {
         $setting = Setting::first();
-        $siteTitle = $setting->site_title;
-        $siteDescription = $setting->site_description;
-        $siteKeywords = $setting->site_keywords;
         $comics = Comic::where('title', 'LIKE', '%'.$request->search.'%')
             ->orderBy('updated_at', 'DESC')
             ->take(20)
             ->get();
-
+        SEOMeta::setTitle($setting->site_title);
+        SEOMeta::setDescription($setting->site_description);
+        OpenGraph::setDescription($setting->site_description);
+        OpenGraph::setTitle($setting->site_title);
         return view('comics.pages.search', compact('comics', 'siteTitle', 'siteDescription', 'siteKeywords'));
     }
 
@@ -57,11 +63,11 @@ class ReaderController extends Controller
         if (!$comic) {
            return view('pages.404');
         }
-
-        SEO::setTitle('Komiksea - '.$comic->title);
-        SEO::setDescription('Komiksea - '.$comic->title);
-        SEO::metatags()->addKeyword(['Komiksea', 'Komiksea me', 'Komikcast','Komiku', $comic->title]);
-
+        SEO::metatags()->addKeyword(['Seataku', 'Seataku me', 'Seataku','Komiku', $comic->title]);
+        SEOMeta::setTitle('Seataku - '.$comic->title);
+        SEOMeta::setDescription('Seataku - '.$comic->title);
+        OpenGraph::setDescription('Seataku - '.$comic->title);
+        OpenGraph::setTitle('Seataku - '.$comic->title);
         $viewed = ComicView::where('comic_id', $comic->id)
             ->where('browser_id', $browserId)
             ->count();
@@ -84,9 +90,11 @@ class ReaderController extends Controller
     {
         $originalType = $type;
         $type = ucfirst(strtolower($type));
-        $siteTitle = "Komiksea - Baca Manhwa Bahasa Indonesia";
-        $siteDescription = "Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia";
-        $siteKeywords = "Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa";
+        SEO::metatags()->addKeyword(["Seataku', 'Seataku me', 'Seataku','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa"]);
+        SEOMeta::setTitle('Seataku - Baca Manhwa Bahasa Indonesia');
+        SEOMeta::setDescription("Seataku - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia");
+        OpenGraph::setDescription("Seataku - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia");
+        OpenGraph::setTitle('Seataku - Baca Manhwa Bahasa Indonesia');
         $perPage = 20;
         $totalComics = Comic::count();
         $comics = Comic::skip(0)->take($perPage)
@@ -101,9 +109,11 @@ class ReaderController extends Controller
     {
         $originalType = $type;
         $type = ucfirst(strtolower($type));
-        $siteTitle = "Komiksea - Baca Manhwa Bahasa Indonesia";
-        $siteDescription = "Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia";
-        $siteKeywords = "Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa";
+        SEO::metatags()->addKeyword(["Seataku', 'Seataku me', 'Seataku','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa"]);
+        SEOMeta::setTitle('Seataku - Baca '. $type .' Bahasa Indonesia');
+        SEOMeta::setDescription("Seataku - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia");
+        OpenGraph::setDescription("Seataku - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia");
+        OpenGraph::setTitle('Seataku - Baca Manhwa Bahasa Indonesia');
         $perPage = 20;
         $offset = ($page - 1) * $perPage;
     
@@ -128,9 +138,11 @@ class ReaderController extends Controller
 
     public function pageComic($page)
     {
-        $siteTitle = "Komiksea - Baca Manhwa Bahasa Indonesia";
-        $siteDescription = "Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia";
-        $siteKeywords = "Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa";
+        SEO::metatags()->addKeyword(["Seataku', 'Seataku me', 'Seataku','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa"]);
+        SEOMeta::setTitle('Seataku - Baca Komik Bahasa Indonesia');
+        SEOMeta::setDescription("Seataku - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia");
+        OpenGraph::setDescription("Seataku - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia");
+        OpenGraph::setTitle('Seataku - Baca Manhwa Bahasa Indonesia');
         $perPage = 20;
         $offset = ($page - 1) * $perPage;
     
@@ -154,9 +166,11 @@ class ReaderController extends Controller
 
     public function viewAll($page)
     {
-        $siteTitle = "Komiksea - Baca Manhwa Bahasa Indonesia";
-        $siteDescription = "Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia";
-        $siteKeywords = "Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa";
+        SEO::metatags()->addKeyword(["Seataku', 'Seataku me', 'Seataku','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa"]);
+        SEOMeta::setTitle('Seataku - Baca Komik Bahasa Indonesia');
+        SEOMeta::setDescription("Seataku - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia");
+        OpenGraph::setDescription("Seataku - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia");
+        OpenGraph::setTitle('Seataku - Baca Manhwa Bahasa Indonesia');
         $perPage = 20;
         $offset = ($page - 1) * $perPage;
     
@@ -202,9 +216,11 @@ class ReaderController extends Controller
         } else {
             $nextChapter = null;
         }
-        SEO::setTitle('Komiksea - '.$comic->title);
-        SEO::setDescription('Komiksea - '.$comic->title);
-        SEO::metatags()->addKeyword(['Komiksea', 'Komiksea me', 'Komikcast','Komiku', $comic->title]);
+        SEO::metatags()->addKeyword(['Seataku', 'Seataku me', 'Seataku','Komiku', $comic->title]);
+        SEOMeta::setTitle('Seataku - '.$comic->title);
+        SEOMeta::setDescription('Seataku - '.$comic->title);
+        OpenGraph::setDescription('Seataku - '.$comic->title);
+        OpenGraph::setTitle('Seataku - '.$comic->title);
         return view('comics.pages.chapter', compact('chapter', 'comic', 'allChapters', 'nextChapter', 'previousChapter'));
     }
 
@@ -231,9 +247,11 @@ class ReaderController extends Controller
         $previousPage = $page - 1;
 
         // Variabel deklarasi awal
-        $siteTitle = "Komiksea - " . $genre->name;
-        $siteDescription = "Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia";
-        $siteKeywords = "Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa";
+        SEO::metatags()->addKeyword(['Seataku', 'Seataku me', 'Seataku','Komiku', $genre->genre_name]);
+        SEOMeta::setTitle('Seataku - '.$genre->genre_name);
+        SEOMeta::setDescription('Seataku - '.$genre->genre_name);
+        OpenGraph::setDescription('Seataku - '.$genre->genre_name);
+        OpenGraph::setTitle('Seataku - '.$genre->genre_name);
 
         if ($page >= $lastPage) {
             $isLastPage = true;

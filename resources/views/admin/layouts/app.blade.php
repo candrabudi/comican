@@ -47,7 +47,7 @@
                                     , made with <span class="text-danger"><i class="tf-icons mdi mdi-heart"></i></span>
                                     by
                                     <a href="https://seataku.com" target="_blank"
-                                        class="footer-link fw-medium">Komiksea</a>
+                                        class="footer-link fw-medium">Seataku</a>
                                 </div>
                             </div>
                         </div>

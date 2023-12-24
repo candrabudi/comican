@@ -7,16 +7,12 @@
     <meta name="msapplication-navbutton-color" content="#342a78" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="#342a78" />
-    <title>Seataku &#8211; Baca Komik Terlengkap dan Terbaru Hari Ini</title>
+    {{-- <title>Seataku &#8211; Baca Komik Terlengkap dan Terbaru Hari Ini</title> --}}
     <meta name="robots" content="max-image-preview:large" />
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
     <script src="{{ asset('comics/js/script.js') }}"></script>
-    <style id="wp-emoji-styles-inline-css" type="text/css">
-      
-    </style>
-    <style id="classic-theme-styles-inline-css" type="text/css">
-     
-    </style>
+    {!! SEOMeta::generate() !!}
+    {!! OpenGraph::generate() !!}
     <link
       rel="stylesheet"
       id="style-css"
