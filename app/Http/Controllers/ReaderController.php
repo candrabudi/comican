@@ -82,6 +82,7 @@ class ReaderController extends Controller
 
     public function viewComicType($type)
     {
+        $originalType = $type;
         $type = ucfirst(strtolower($type));
         $siteTitle = "Komiksea - Baca Manhwa Bahasa Indonesia";
         $siteDescription = "Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia";
@@ -93,11 +94,12 @@ class ReaderController extends Controller
             ->orderBy('updated_at', 'DESC')
             ->get();
 
-        return view('comics.pages.typecomic', compact('type', 'comics', 'totalComics', 'siteTitle', 'siteDescription', 'siteKeywords'));
+        return view('comics.pages.typecomic', compact('type', 'comics', 'totalComics', 'siteTitle', 'siteDescription', 'siteKeywords', 'originalType'));
     }
 
-    public function viewComicTypePagination($page)
+    public function viewComicTypePagination($type,$page)
     {
+        $originalType = $type;
         $type = ucfirst(strtolower($type));
         $siteTitle = "Komiksea - Baca Manhwa Bahasa Indonesia";
         $siteDescription = "Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia";
@@ -118,10 +120,10 @@ class ReaderController extends Controller
         if ($page >= $lastPage) {
             $isLastPage = true;
             $nextPage = 1;
-            return view('comics.pages.typecomic', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords'));
+            return view('comics.pages.typecomic', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords', 'originalType'));
         }
     
-        return view('comics.pages.typecomic', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords'));
+        return view('comics.pages.typecomic', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords', 'originalType'));
     }
 
     public function pageComic($page)

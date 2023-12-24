@@ -21,7 +21,7 @@ use App\Http\Controllers\ReaderController;
 Route::get('/', [ReaderController::class, 'index'])->name('reader');
 Route::get('/cari', [ReaderController::class, 'searchComic'])->name('reader.search');
 Route::get('/baca/{type}/{slug}', [ReaderController::class, 'comicDetail'])->name('reader.comic.detail');
-Route::get('/baca/{type}/{page}', [ReaderController::class, 'viewComicTypePagination'])->name('reader.page.manhwa.pagination');
+Route::get('/baca/{type}/{page}', [ReaderController::class, 'viewComicTypePagination'])->name('reader.page.comic.pagination');
 Route::get('/chapter/{slug}', [ReaderController::class, 'readChapter'])->name('reader.chapter');
 Route::get('/semua/komik/{page}', [ReaderController::class, 'viewAll'])->name('reader.comic.page');
 Route::get('/genre/{slug}/{page}', [ReaderController::class, 'pageGenre'])->name('reader.genre.page');
