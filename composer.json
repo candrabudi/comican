@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
         "nesbot/carbon": "^2.72",
+        "spatie/laravel-sitemap": "^7.0",
         "symfony/dom-crawler": "^6.4",
         "yajra/laravel-datatables": "10.0"
     },

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\MangaController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\ReaderController;
+use App\Jobs\GenerateSitemap;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +31,14 @@ Route::get('/baca/{type}', [ReaderController::class, 'viewComicType'])->name('re
 Route::get('/error', [PageController::class, 'noFound'])->name('page.notfound');
 
 Route::post('/login/process', [AuthController::class, 'loginProcess'])->name('login.process');
+
+
+Route::get('/generate-sitemap', function () {
+    GenerateSitemap::dispatch();
+    
+    return 'Sitemap generation has been triggered!';
+});
+
 Auth::routes();
 Route::group(['prefix' => 'sea'], function($router) {
     $router->get('/dashboard', [DashboardController::class, 'index'])->name('sea.dashboard');
