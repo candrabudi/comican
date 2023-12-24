@@ -29,8 +29,9 @@ Route::get('/manga/{page}', [ReaderController::class, 'pageMangaPagination'])->n
 Route::get('/manhwa', [ReaderController::class, 'pageManhwa'])->name('reader.page.manhwa');
 Route::get('/manhwa/{page}', [ReaderController::class, 'pageManhwaPagination'])->name('reader.page.manhwa.pagination');
 Route::get('/chapter/{slug}', [ReaderController::class, 'readChapter'])->name('reader.chapter');
-Route::get('/komik/{page}', [ReaderController::class, 'pageComic'])->name('reader.comic.page');
+Route::get('/semua/komik/{page}', [ReaderController::class, 'viewAll'])->name('reader.comic.page');
 Route::get('/genre/{slug}/{page}', [ReaderController::class, 'pageGenre'])->name('reader.genre.page');
+Route::get('/baca/{type}', [ReaderController::class, 'viewComicType'])->name('reader.page.comic');
 
 Route::get('/error', [PageController::class, 'noFound'])->name('page.notfound');
 

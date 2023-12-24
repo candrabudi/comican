@@ -25,10 +25,10 @@
                         <a href="/" itemprop="url"><span itemprop="name">Beranda</span></a>
                     </li>
                     <li id="menu-item-9" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9">
-                        <a href="{{ route('reader.page.manga') }}" itemprop="url"><span itemprop="name">Manga</span></a>
+                        <a href="{{ route('reader.page.comic', 'manga') }}" itemprop="url"><span itemprop="name">Manga</span></a>
                     </li>
                     <li id="menu-item-9" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9">
-                        <a href="{{ route('reader.page.manhwa') }}" itemprop="url"><span itemprop="name">Manhwa</span></a>
+                        <a href="{{ route('reader.page.comic', 'manhwa') }}" itemprop="url"><span itemprop="name">Manhwa</span></a>
                     </li>
                 </ul>
             </span>

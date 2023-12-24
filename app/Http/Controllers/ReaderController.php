@@ -43,7 +43,7 @@ class ReaderController extends Controller
             ->take(20)
             ->get();
 
-        return view('reader.search', compact('comics', 'siteTitle', 'siteDescription', 'siteKeywords'));
+        return view('comics.pages.search', compact('comics', 'siteTitle', 'siteDescription', 'siteKeywords'));
     }
 
     public function comicDetail(Request $request, $type,$slug)
@@ -139,6 +139,22 @@ class ReaderController extends Controller
         return view('reader.page-manga', compact('type', 'comics', 'totalComics', 'siteTitle', 'siteDescription', 'siteKeywords'));
     }
 
+    public function viewComicType($type)
+    {
+        $type = ucfirst(strtolower($type));
+        $siteTitle = "Komiksea - Baca Manhwa Bahasa Indonesia";
+        $siteDescription = "Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia";
+        $siteKeywords = "Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa";
+        $perPage = 20;
+        $totalComics = Comic::count();
+        $comics = Comic::skip(0)->take($perPage)
+            ->where('type', $type)
+            ->orderBy('updated_at', 'DESC')
+            ->get();
+
+        return view('comics.pages.typecomic', compact('type', 'comics', 'totalComics', 'siteTitle', 'siteDescription', 'siteKeywords'));
+    }
+
     public function pageManhwaPagination($page)
     {
         $type = "Manhwa";
@@ -191,6 +207,32 @@ class ReaderController extends Controller
         }
     
         return view('reader.page-comic', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords'));
+    }
+
+    public function viewAll($page)
+    {
+        $siteTitle = "Komiksea - Baca Manhwa Bahasa Indonesia";
+        $siteDescription = "Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia";
+        $siteKeywords = "Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa";
+        $perPage = 20;
+        $offset = ($page - 1) * $perPage;
+    
+        $totalComics = Comic::count();
+        $comics = Comic::skip($offset)->take($perPage)
+            ->orderBy('updated_at', 'DESC')
+            ->get();
+    
+        $lastPage = ceil($totalComics / $perPage);
+        $isLastPage = false;
+        $nextPage = $page + 1;
+        $previousPage = $page - 1;
+        if ($page >= $lastPage) {
+            $isLastPage = true;
+            $nextPage = 1;
+            return view('comics.pages.viewall', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords'));
+        }
+    
+        return view('comics.pages.viewall', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords'));
     }
 
     public function readChapter($slug)
