@@ -92,35 +92,35 @@ ts_localStorage.removeAllCache = function(){
     }
 }
 //darkmode
-var ts_darkmode = {};
-ts_darkmode.init = function(){
-	if (ts_localStorage.isSupported() === false) return;
-	if (localStorage.getItem("thememode") == null){
-		if (defaultTheme == "lightmode"){
-			jQuery("body").addClass("lightmode");
-		}else{
-			jQuery("body").removeClass("lightmode");
-		}
-	}else if (localStorage.getItem("thememode") == "lightmode"){
-		jQuery("body").addClass("lightmode");
-	}else{
-		jQuery("body").removeClass("lightmode");
-	}
-}
-ts_darkmode.listen = function(){
-	jQuery("#thememode input[type='checkbox']").on('change', function(){
-		var is_on = jQuery("#thememode input[type='checkbox']").prop("checked");
-		if (is_on == false){
-			//jQuery(".logos img").attr('src', tsLogoLight);
-			localStorage.setItem("thememode", "lightmode");
-			jQuery("body").addClass("lightmode");
-		}else{
-			//jQuery(".logos img").attr('src', tsLogoDark);
-			localStorage.setItem("thememode", "darkmode");
-			jQuery("body").removeClass("lightmode");
-		}
-	});
-}
+// var ts_darkmode = {};
+// ts_darkmode.init = function(){
+// 	if (ts_localStorage.isSupported() === false) return;
+// 	if (localStorage.getItem("thememode") == null){
+// 		if (defaultTheme == "lightmode"){
+// 			jQuery("body").addClass("lightmode");
+// 		}else{
+// 			jQuery("body").removeClass("lightmode");
+// 		}
+// 	}else if (localStorage.getItem("thememode") == "lightmode"){
+// 		jQuery("body").addClass("lightmode");
+// 	}else{
+// 		jQuery("body").removeClass("lightmode");
+// 	}
+// }
+// ts_darkmode.listen = function(){
+// 	jQuery("#thememode input[type='checkbox']").on('change', function(){
+// 		var is_on = jQuery("#thememode input[type='checkbox']").prop("checked");
+// 		if (is_on == false){
+// 			//jQuery(".logos img").attr('src', tsLogoLight);
+// 			localStorage.setItem("thememode", "lightmode");
+// 			jQuery("body").addClass("lightmode");
+// 		}else{
+// 			//jQuery(".logos img").attr('src', tsLogoDark);
+// 			localStorage.setItem("thememode", "darkmode");
+// 			jQuery("body").removeClass("lightmode");
+// 		}
+// 	});
+// }
 var ts_popular_widget = {
 	"ranges": ["monthly", "weekly", "alltime"],
 	"default": "weekly",

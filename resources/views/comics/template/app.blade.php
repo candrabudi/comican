@@ -98,16 +98,16 @@
     itemscope="itemscope"
     itemtype="http://schema.org/WebPage"
   >
-    <script>
+    {{-- <script>
       ts_darkmode.init();
-    </script>
+    </script> --}}
 
     <div class="mainholder">
       @include('comics.template.menu')
       
-      
+      <div id="content">
         @yield('content')
-
+      </div>
       <div id="footer">
         <footer
           id="colophon"
@@ -134,8 +134,23 @@
       </div>
     </div>
     <span class="scrollToTop"><span class="fas fa-angle-up"></span></span>
-    @yield('scripts')
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+    <script>
+      var swiper = new Swiper(".swiper-container", {
+        centeredSlides: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        loop: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+    </script>
+
     <link
       rel="stylesheet"
       id="owl-carousel-css"
@@ -148,6 +163,9 @@
       src="{{ asset('comics/js/owl.carousel.js') }}"
       id="owl-carousel-js"
     ></script>
+    <script>
+      console.clear();
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   </body>
 </html>

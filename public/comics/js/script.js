@@ -167,68 +167,56 @@ window._wpemojiSettings = {
 var sf_templates = '<a href="{search_url_escaped}">View All Results</a>';
 var sf_position = "0";
 var sf_input = ".search-live";
-jQuery(document).ready(function () {
-    jQuery(sf_input).ajaxyLiveSearch({
-        expand: false,
-        searchUrl: "https://seataku.com/?s=%s",
-        text: "Search",
-        delay: 500,
-        iwidth: 180,
-        width: 350,
-        ajaxUrl: "https://seataku.com/wp-admin/admin-ajax.php",
-        rtl: 0,
-    });
-    jQuery(".live-search_ajaxy-selective-input").keyup(function () {
-        var width = jQuery(this).val().length * 8;
-        if (width < 50) {
-            width = 50;
-        }
-        jQuery(this).width(width);
-    });
-    jQuery(".live-search_ajaxy-selective-search").click(function () {
-        jQuery(this).find(".live-search_ajaxy-selective-input").focus();
-    });
-    jQuery(".live-search_ajaxy-selective-close").click(function () {
-        jQuery(this).parent().remove();
-    });
-});
+// jQuery(document).ready(function () {
+//     jQuery(sf_input).ajaxyLiveSearch({
+//         expand: false,
+//         searchUrl: "https://seataku.com/?s=%s",
+//         text: "Search",
+//         delay: 500,
+//         iwidth: 180,
+//         width: 350,
+//         ajaxUrl: "https://seataku.com/wp-admin/admin-ajax.php",
+//         rtl: 0,
+//     });
+//     jQuery(".live-search_ajaxy-selective-input").keyup(function () {
+//         var width = jQuery(this).val().length * 8;
+//         if (width < 50) {
+//             width = 50;
+//         }
+//         jQuery(this).width(width);
+//     });
+//     jQuery(".live-search_ajaxy-selective-search").click(function () {
+//         jQuery(this).find(".live-search_ajaxy-selective-input").focus();
+//     });
+//     jQuery(".live-search_ajaxy-selective-close").click(function () {
+//         jQuery(this).parent().remove();
+//     });
+// });
 
-jQuery.event.special.touchstart = {
-    setup: function (_, ns, handle) {
-        this.addEventListener("touchstart", handle, {
-            passive: !ns.includes("noPreventDefault"),
-        });
-    },
-};
-jQuery.event.special.touchmove = {
-    setup: function (_, ns, handle) {
-        this.addEventListener("touchmove", handle, {
-            passive: !ns.includes("noPreventDefault"),
-        });
-    },
-};
-jQuery.event.special.wheel = {
-    setup: function (_, ns, handle) {
-        this.addEventListener("wheel", handle, { passive: true });
-    },
-};
-jQuery.event.special.mousewheel = {
-    setup: function (_, ns, handle) {
-        this.addEventListener("mousewheel", handle, { passive: true });
-    },
-};
+// jQuery.event.special.touchstart = {
+//     setup: function (_, ns, handle) {
+//         this.addEventListener("touchstart", handle, {
+//             passive: !ns.includes("noPreventDefault"),
+//         });
+//     },
+// };
+// jQuery.event.special.touchmove = {
+//     setup: function (_, ns, handle) {
+//         this.addEventListener("touchmove", handle, {
+//             passive: !ns.includes("noPreventDefault"),
+//         });
+//     },
+// };
+// jQuery.event.special.wheel = {
+//     setup: function (_, ns, handle) {
+//         this.addEventListener("wheel", handle, { passive: true });
+//     },
+// };
+// jQuery.event.special.mousewheel = {
+//     setup: function (_, ns, handle) {
+//         this.addEventListener("mousewheel", handle, { passive: true });
+//     },
+// };
 
-ts_darkmode.listen();
+// ts_darkmode.listen();
 
-var swiper = new Swiper(".swiper-container", {
-    centeredSlides: true,
-    autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-    },
-    loop: true,
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-});
