@@ -192,66 +192,6 @@ class ReaderController extends Controller
     
         return view('reader.page-comic', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords'));
     }
-    
-    public function manhwaDetail(Request $request, $slug)
-    {
-        
-        $browserId = $request->session()->getId();
-
-        $comic = Comic::where('slug', $slug)->first();
-
-        if (!$comic) {
-           return view('pages.404');
-        }
-
-        SEO::setTitle('Komiksea - '.$comic->title);
-        SEO::setDescription('Komiksea - '.$comic->title);
-        SEO::metatags()->addKeyword(['Komiksea', 'Komiksea me', 'Komikcast','Komiku', $comic->title]);
-
-        $viewed = ComicView::where('comic_id', $comic->id)
-            ->where('browser_id', $browserId)
-            ->count();
-
-        if ($viewed === 0) {
-            $comic->increment('view_count');
-
-            ComicView::create([
-                'comic_id' => $comic->id,
-                'browser_id' => $browserId,
-            ]);
-        }
-
-        $widthRating = $this->formatNumber($comic->rating);
-        return view('reader.detail', compact('comic', 'widthRating'));
-    }
-
-    public function manhuaDetail($slug)
-    {
-        $comic = Comic::where('slug', $slug)
-            ->first();
-        if(!$comic){
-            return view('pages.404');
-        }
-        SEO::setTitle('Komiksea - '.$comic->title);
-        SEO::setDescription('Komiksea - '.$comic->title);
-        SEO::metatags()->addKeyword(['Komiksea', 'Komiksea me', 'Komikcast','Komiku', $comic->title]);
-        $widthRating = $this->formatNumber($comic->rating);
-        return view('reader.detail', compact('comic', 'widthRating'));
-    }
-
-    public function mangaDetail($slug)
-    {
-        $comic = Comic::where('slug', $slug)
-            ->first();
-        if(!$comic){
-            return view('pages.404');
-        }
-        SEO::setTitle('Komiksea - '.$comic->title);
-        SEO::setDescription('Komiksea - '.$comic->title);
-        SEO::metatags()->addKeyword(['Komiksea', 'Komiksea me', 'Komikcast','Komiku', $comic->title]);
-        $widthRating = $this->formatNumber($comic->rating);
-        return view('comics.detail.manga', compact('comic', 'widthRating'));
-    }
 
     public function readChapter($slug)
     {
@@ -280,7 +220,7 @@ class ReaderController extends Controller
         SEO::setTitle('Komiksea - '.$comic->title);
         SEO::setDescription('Komiksea - '.$comic->title);
         SEO::metatags()->addKeyword(['Komiksea', 'Komiksea me', 'Komikcast','Komiku', $comic->title]);
-        return view('reader.chapter', compact('chapter', 'comic', 'allChapters', 'nextChapter', 'previousChapter'));
+        return view('comics.pages.chapter', compact('chapter', 'comic', 'allChapters', 'nextChapter', 'previousChapter'));
     }
 
     public function pageGenre($slug, $page)

@@ -134,7 +134,7 @@
       </div>
     </div>
     <span class="scrollToTop"><span class="fas fa-angle-up"></span></span>
-
+    @yield('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
     <link
       rel="stylesheet"

@@ -23,7 +23,7 @@ Route::get('/cari', [ReaderController::class, 'searchComic'])->name('reader.sear
 // Route::get('/manhwa/{slug}', [ReaderController::class, 'manhwaDetail'])->name('reader.manhwa.detail');
 // Route::get('/manhua/{slug}', [ReaderController::class, 'mahuaDetail'])->name('reader.manhua.detail');
 // Route::get('/manga/{slug}', [ReaderController::class, 'mangaDetail'])->name('reader.manga.detail');
-Route::get('{type}/{slug}', [ReaderController::class, 'comicDetail'])->name('reader.comic.detail');
+Route::get('/baca/{type}/{slug}', [ReaderController::class, 'comicDetail'])->name('reader.comic.detail');
 Route::get('/manga', [ReaderController::class, 'pageManga'])->name('reader.page.manga');
 Route::get('/manga/{page}', [ReaderController::class, 'pageMangaPagination'])->name('reader.page.manga.pagination');
 Route::get('/manhwa', [ReaderController::class, 'pageManhwa'])->name('reader.page.manhwa');
