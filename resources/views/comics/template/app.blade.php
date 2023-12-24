@@ -7,11 +7,9 @@
     <meta name="msapplication-navbutton-color" content="#342a78" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="#342a78" />
-    {{-- <title>Seataku &#8211; Baca Komik Terlengkap dan Terbaru Hari Ini</title> --}}
     <meta name="robots" content="max-image-preview:large" />
-    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
     <script src="{{ asset('comics/js/script.js') }}"></script>
-    {!! SEOMeta::generate() !!}
+    {!! str_replace(" - It's Over 9000!", '', SEOMeta::generate()) !!}
     {!! OpenGraph::generate() !!}
     <link
       rel="stylesheet"
