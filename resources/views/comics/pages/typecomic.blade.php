@@ -6,7 +6,7 @@
                 <div class="postbody">
                     <div class="bixbox">
                         <div class="releases">
-                            <h2>Terakhir Update Komik</h2><a class="vl" href="{{ route('reader.comic.page', 1) }}">Lihat
+                            <h2>Terakhir Update Komik</h2><a class="vl" href="{{ route('reader.page.manhwa.pagination', 1) }}">Lihat
                                 Semua</a>
                         </div>
                         <div class="listupd stsven">
@@ -49,8 +49,7 @@
                             @endforeach
                             @if ($totalComics > 20)
                                 <div class="hpage">
-                                    <a href="{{ route('reader.comic.page', 1) }}" class="r">Lanjut <i
-                                            class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                                    <a href="{{ route('reader.page.manhwa.pagination', 1) }}" class="r">Lanjut <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
                                 </div>
                             @endif
                         </div>

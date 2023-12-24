@@ -79,65 +79,6 @@ class ReaderController extends Controller
         return view('comics.pages.detail', compact('comic', 'widthRating'));
     }
 
-    public function pageManga()
-    {
-        $type = 'Manga';
-        $siteTitle = "Komiksea - Baca Manga Bahasa Indonesia";
-        $siteDescription = "Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia";
-        $siteKeywords = "Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa";
-        $perPage = 20;
-        $totalComics = Comic::count();
-        $comics = Comic::skip(0)->take($perPage)
-            ->where('type', 'Manga')
-            ->orderBy('updated_at', 'DESC')
-            ->get();
-
-        return view('reader.page-manga', compact('type', 'comics', 'totalComics', 'siteTitle', 'siteDescription', 'siteKeywords'));
-    }
-
-    public function pageMangaPagination($page)
-    {
-        $type = "Manga";
-        $siteTitle = "Komiksea - Baca Manga Bahasa Indonesia";
-        $siteDescription = "Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia";
-        $siteKeywords = "Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa";
-        $perPage = 20;
-        $offset = ($page - 1) * $perPage;
-    
-        $totalComics = Comic::count();
-        $comics = Comic::skip($offset)->take($perPage)
-            ->where('type', 'Manga')
-            ->orderBy('updated_at', 'DESC')
-            ->get();
-    
-        $lastPage = ceil($totalComics / $perPage);
-        $isLastPage = false;
-        $nextPage = $page + 1;
-        $previousPage = $page - 1;
-        if ($page >= $lastPage) {
-            $isLastPage = true;
-            $nextPage = 1;
-            return view('reader.page-manga-pagination', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords'));
-        }
-    
-        return view('reader.page-manga-pagination', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords'));
-    }
-    
-    public function pageManhwa()
-    {
-        $type = "Manhwa";
-        $siteTitle = "Komiksea - Baca Manhwa Bahasa Indonesia";
-        $siteDescription = "Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia";
-        $siteKeywords = "Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa";
-        $perPage = 20;
-        $totalComics = Comic::count();
-        $comics = Comic::skip(0)->take($perPage)
-            ->where('type', 'Manhwa')
-            ->orderBy('updated_at', 'DESC')
-            ->get();
-
-        return view('reader.page-manga', compact('type', 'comics', 'totalComics', 'siteTitle', 'siteDescription', 'siteKeywords'));
-    }
 
     public function viewComicType($type)
     {
@@ -155,9 +96,9 @@ class ReaderController extends Controller
         return view('comics.pages.typecomic', compact('type', 'comics', 'totalComics', 'siteTitle', 'siteDescription', 'siteKeywords'));
     }
 
-    public function pageManhwaPagination($page)
+    public function viewComicTypePagination($page)
     {
-        $type = "Manhwa";
+        $type = ucfirst(strtolower($type));
         $siteTitle = "Komiksea - Baca Manhwa Bahasa Indonesia";
         $siteDescription = "Komikcast - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia";
         $siteKeywords = "Komiksea', 'Komiksea me', 'Komikcast','Komiku', 'Baca Komik lengkap', 'Baca Manga', 'Baca Manhua', 'Baca Manhwa";
@@ -177,10 +118,10 @@ class ReaderController extends Controller
         if ($page >= $lastPage) {
             $isLastPage = true;
             $nextPage = 1;
-            return view('reader.page-manga-pagination', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords'));
+            return view('comics.pages.typecomic', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords'));
         }
     
-        return view('reader.page-manga-pagination', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords'));
+        return view('comics.pages.typecomic', compact('comics', 'isLastPage', 'nextPage', 'previousPage','page', 'siteTitle', 'siteDescription', 'siteKeywords'));
     }
 
     public function pageComic($page)
