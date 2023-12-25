@@ -17,6 +17,8 @@ class ComicChapter extends Model
         'chapter_title',
         'chapter_content',
         'chapter_realease',
+        'chapter_link',
+        'chapter_number_original',
     ];
     public function toSitemapTag(): Url | string | array
     {

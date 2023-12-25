@@ -52,6 +52,7 @@ Route::group(['prefix' => 'sea'], function($router) {
         $router->post('/crawl/process', [MangaController::class, 'comicProcess'])->name('sea.comic.crawl.process');
         $router->post('/crawl/chapter/process', [MangaController::class, 'comicChapterProcess'])->name('sea.comic.crawl.chapter.process');
         $router->post('/crawl/all/chapter', [MangaController::class, 'crawlAllChapter'])->name('sea.comic.crawl.chapter.all');
+        $router->get('/crawl/all/chapter/check/{comic_id}', [MangaController::class, 'crawlNewChapter'])->name('sea.comic.crawl.chapter.check');
     });
     Route::group(['prefix' => 'settings'], function($router) {
         $router->get('/', [SettingController::class, 'index'])->name('sea.setting');

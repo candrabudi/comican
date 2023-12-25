@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comic_chapters', function (Blueprint $table) {
+        Schema::create('comic_links', function (Blueprint $table) {
             $table->id();
             $table->integer('comic_id');
-            $table->string('chapter_number_original');
-            $table->string('chapter_number');
-            $table->string('chapter_slug');
-            $table->string('chapter_title');
-            $table->text('chapter_content');
-            $table->dateTime('chapter_realease');
-            $table->text('chapter_link');
+            $table->enum('web', ['kiryuu']);
+            $table->text('comic_link');
+            $table->datetime('last_update')->nullable();
+            $table->datetime('next_update');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comic_chapters');
+        Schema::dropIfExists('comic_links');
     }
 };

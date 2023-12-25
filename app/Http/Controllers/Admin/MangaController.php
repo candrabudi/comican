@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Comic;
 use App\Models\ComicChapterLink;
 use App\Models\ComicChapter;
+use App\Models\ComicLink;
 use App\Models\ComicGenre;
 use App\Models\Genre;
 use DataTables;
@@ -53,6 +54,26 @@ class MangaController extends Controller
                 'thumb' => asset('/storage/'.$new['thumb']),
             ]; 
         }, $comics);
+
+        return DataTables::of($reform)->make(true);
+    }
+
+    public function datatableChapter($comic_id)
+    {
+        $chapters = ComicChapter::where('comic_id', $comic_id)
+            ->get()
+            ->toArray();
+        
+        $i = 0;
+        $reform = array_map(function($new) use (&$i) { 
+            $i++;
+            return [
+                'no' => $i.'.',
+                'id' => $new['id'],
+                'chapter_number' => $new['chapter_number'],
+                'chapter_title' => $new['chapter_title'],
+            ]; 
+        }, $chapters);
 
         return DataTables::of($reform)->make(true);
     }
@@ -146,6 +167,13 @@ class MangaController extends Controller
             $storeComic->thumb = $comic['path_image'];
             $storeComic->save();
             $storeComic->fresh();
+
+            $storeComicLink = new ComicLink();
+            $storeComicLink->comic_id = $storeComic->id;
+            $storeComicLink->web = 'kiryuu';
+            $storeComicLink->comic_link = $request->url;
+            $storeComicLink->next_update = Carbon::now()->addDay()->setHour(7)->setMinute(0)->setSecond(0);
+            $storeComicLink->save();
 
             $genres = explode(", ", $comic['genre']);
             foreach($genres as $genre){
@@ -597,6 +625,38 @@ class MangaController extends Controller
         return response()->json([
             'error' => 'Gagal mendapatkan HTML'
         ], 500);
+    }
+
+    public function crawlNewChapter($comic_id)
+    {
+
+        $comicLink = ComicLink::where('comic_id', $comic_id)
+            ->first();
+
+        $comicChapter = $this->crawlComicChapter($comicLink->comic_link);
+        foreach($comicChapter as $chapter){
+            if($chapter['chapter'] !== "Chapter {{number}}"){
+                $checkComicChapter = ComicChapter::select('id')
+                    ->where('chapter_link', $chapter['chapter_link'])
+                    ->first();
+
+                $checkComicChapterLink = ComicChapterLink::select('id')
+                    ->where('link', $chapter['chapter_link'])
+                    ->first();
+
+                if(!$checkComicChapter && !$checkComicChapterLink){
+                    $storeChapterLink = new ComicChapterLink();
+                    $storeChapterLink->comic_id = $comicLink->comic_id;
+                    $storeChapterLink->chapter = str_replace('Chapter ', '', $chapter['chapter']);
+                    $storeChapterLink->link = $chapter['chapter_link'];
+                    $storeChapterLink->chapter_realease =  Carbon::parse($chapter['chapter_date'])->addMinutes(2)->format('Y-m-d H:i:s');
+                    $storeChapterLink->status = 0;
+                    $storeChapterLink->save();
+                }
+            }
+        }
+
+        return "success";
     }
 
     function createSlug($text) 

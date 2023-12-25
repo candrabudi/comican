@@ -40,11 +40,13 @@ class CrawlChapterListener implements ShouldQueue
                 $storeChapter = new ComicChapter();
                 $storeChapter->fill([
                     'comic_id' => $chapter->comic_id,
+                    'chapter_number_original' => $chapter->chapter,
                     'chapter_number' => "Chapter " . $chapter->chapter,
                     'chapter_slug' => $slug,
                     'chapter_title' => str_replace(' Bahasa Indonesia', '', $crawlChapter['title_text']),
                     'chapter_realease' => $chapter->chapter_realease,
                     'chapter_content' => json_encode($crawlChapter['images']),
+                    'chapter_link' => $chapter->link,
                 ])->save();
 
                 ComicChapterLink::where('id', $chapter->id)->update(['status' => 1]);
