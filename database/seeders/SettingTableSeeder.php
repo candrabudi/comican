@@ -13,7 +13,7 @@ class SettingTableSeeder extends Seeder
     public function run(): void
     {
         $setting = new Setting();
-        $setting->site_title = "Seakomik";
+        $setting->site_title = "Seataku - Tempat Baca Komik Bahasa Indonesia";
         $setting->site_keywords = "Seataku, Seataku me, Komiku, Baca online komik bahasa indonesia, Baca Komik lengkap, Baca Manga, Baca Manhua, Baca Manhwa";
         $setting->site_description = "Seataku - Tempatnya Baca Komik Online Terlengkap Bahasa Indonesia, Baca Manga Bahasa Indonesia, Baca Manhwa Bahasa Indonesia, Baca Manhua Bahasa Indonesia";
         $setting->site_logo = "mangareader/images/Seataku.png";

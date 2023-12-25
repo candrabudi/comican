@@ -46,6 +46,7 @@ Route::group(['prefix' => 'sea'], function($router) {
     Route::group(['prefix' => 'comic'], function($router) {
         $router->get('/', [MangaController::class, 'index'])->name('sea.comic');
         $router->get('/datatable', [MangaController::class, 'datatable'])->name('sea.comic.datatable');
+        $router->get('/datatable/comic', [MangaController::class, 'datatableChapter'])->name('sea.comic.datatable.comic');
         $router->get('/create', [MangaController::class, 'create'])->name('sea.comic.create');
         $router->get('/edit/{id}', [MangaController::class, 'edit'])->name('sea.comic.edit');
         $router->post('/update/{id}', [MangaController::class, 'updateComic'])->name('sea.comic.update');
