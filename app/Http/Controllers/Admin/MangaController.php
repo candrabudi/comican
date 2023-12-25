@@ -103,8 +103,12 @@ class MangaController extends Controller
             $storeComic->slug = $this->createSlug($comicTitle);
             $storeComic->alternative = $comic['seriestualt'];
             $storeComic->status = $comic['comic_detail']['status'] == 'Ongoing' ? 'Ongoing' : 'Completed';
-            $storeComic->author = $comic['comic_detail']['author'];
             
+            if(isset($comic['comic_detail']['author'])){
+                $storeComic->author = $comic['comic_detail']['author'];
+            }else{
+                $storeComic->author = '-';
+            }
             if(isset($comic['comic_detail']['serialization'])){
                 $storeComic->serialization = $comic['comic_detail']['serialization'];
             }else{
