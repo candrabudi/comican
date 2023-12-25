@@ -273,6 +273,23 @@ class MangaController extends Controller
         return redirect()->back();
         
     }
+    
+    public function crawlAllChapterGlobal(Request $request)
+    {   
+        $chapters = ComicChapterLink::where('status', 0)
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        foreach ($chapters as $chapter) {
+            CrawlAllChapterJob::dispatch($chapter);
+        }
+
+        return response()
+            ->json([
+                'message' => 'success'
+            ]);
+        
+    }
 
     public function crawlComicKomikindo($url){
         $response = Http::get($url);
