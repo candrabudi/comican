@@ -10,6 +10,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Models\ComicChapterLink;
 use App\Events\CrawlChapterEvent;
+use Log;
 class CrawlChapterJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -31,6 +32,7 @@ class CrawlChapterJob implements ShouldQueue
             ->orderBy('id', 'DESC')
             ->get();
 
+            Log::info("kodok");
         foreach ($chapters as $chapter) {
             event(new CrawlChapterEvent($chapter->id));
         }
