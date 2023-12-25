@@ -251,12 +251,20 @@ class MangaController extends Controller
 
     public function updateComic(Request $request, $id)
     {
-        Comic::where('id', $id)
-            ->update([
-                'slider' => $request->comic_slider
-            ]);
-
-        return redirect()->back();
+        $comic = Comic::findOrFail($id);
+        $comic->title = $request->input('comic_title') ?? $comic->title;
+        $comic->alternative = $request->input('comic_alternative') ?? $comic->alternative;
+        $comic->status = $request->input('comic_status');
+        $comic->type = $request->input('comic_type') ?? $comic->type;
+        $comic->color = $request->input('comic_color') ?? $comic->color;
+        $comic->slider = $request->input('comic_slider') ?? $comic->slider;
+        $comic->hot = $request->input('comic_hot') ?? $comic->hot;
+        $comic->description = $request->input('comic_description') ?? $comic->description;
+        $comic->serialization = $request->input('comic_serialization') ?? $comic->serialization;
+        $comic->author = $request->input('comic_author') ?? $comic->author;
+        $comic->artist = $request->input('comic_artist') ?? $comic->artist;
+        $comic->save();
+        return redirect()->back()->with('success', 'Data berhasil diperbarui');
     }
 
     public function crawlAllChapter(Request $request)

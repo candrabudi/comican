@@ -22,7 +22,7 @@
                         </div>
                         <div class="form-floating form-floating-outline mb-4">
                             <input type="text" class="form-control" name="comic_alternative"
-                                value="{{ $comic->alternative }}" id="comic-alternative" readonly />
+                                value="{{ $comic->alternative }}" id="comic-alternative" />
                             <label for="comic-alternative">Judul Alternative</label>
                         </div>
                         <div class="form-floating form-floating-outline mb-4">
@@ -51,16 +51,16 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-floating form-floating-outline mb-4">
-                            <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                                <option value="Ongoing" {{ $comic->status == 'Ongoing' ? 'selected' : '' }}>Ongoing</option>
-                                <option value="Completed" {{ $comic->status == 'Completed' ? 'selected' : '' }}>Completed
+                            <select class="form-select" id="exampleFormControlSelect1" name="comic_status" aria-label="Default select example">
+                                <option value="ongoing" {{ $comic->status == 'Ongoing' ? 'selected' : '' }}>Ongoing</option>
+                                <option value="completed" {{ $comic->status == 'Completed' ? 'selected' : '' }}>Completed
                                 </option>
-                                <option value="Hiatus" {{ $comic->status == 'Hiatus' ? 'selected' : '' }}>Hiatus</option>
+                                <option value="hiatus" {{ $comic->status == 'Hiatus' ? 'selected' : '' }}>Hiatus</option>
                             </select>
                             <label for="exampleFormControlSelect1">Status Komik</label>
                         </div>
                         <div class="form-floating form-floating-outline mb-4">
-                            <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
+                            <select class="form-select" id="exampleFormControlSelect1" name="comic_type" aria-label="Default select example">
                                 <option value="Manhwa" {{ $comic->type == 'Manhwa' ? 'selected' : '' }}>Manhwa</option>
                                 <option value="Manga" {{ $comic->type == 'Manga' ? 'selected' : '' }}>Manga</option>
                                 <option value="Manhua" {{ $comic->type == 'Manhua' ? 'selected' : '' }}>Manhua</option>
@@ -75,7 +75,7 @@
                             <label for="exampleFormControlSelect1">Slider</label>
                         </div>
                         <div class="form-floating form-floating-outline mb-4">
-                            <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
+                            <select class="form-select" name="comic_hot" id="exampleFormControlSelect1" aria-label="Default select example">
                                 <option value="Yes" {{ $comic->hot == 'Yes' ? 'selected' : '' }}>Yes</option>
                                 <option value="No" {{ $comic->hot == 'No' ? 'selected' : '' }}>No</option>
                             </select>
