@@ -19,18 +19,30 @@ class Comic extends Model
     public function comicChapter()
     {
         return $this->hasMany(ComicChapter::class, 'comic_id', 'id')
-            ->orderByRaw("LPAD(chapter_number_original, 10, '0') DESC")
+            ->selectRaw("*, 
+                CAST(SUBSTRING_INDEX(REGEXP_REPLACE(chapter_number_original, '[^0-9\.]', ''), '.', 1) AS UNSIGNED) AS int_part,
+                CAST(SUBSTRING_INDEX(REGEXP_REPLACE(chapter_number_original, '[^0-9\.]', ''), '.', -1) AS UNSIGNED) AS decimal_part")
+            ->orderByDesc('int_part')
+            ->orderByDesc('decimal_part')
             ->take(2);
     }
     public function comicChapterFirst()
     {
         return $this->hasONe(ComicChapter::class, 'comic_id', 'id')
-            ->orderByRaw("LPAD(chapter_number_original, 10, '0') ASC");
+            ->selectRaw("*, 
+                CAST(SUBSTRING_INDEX(REGEXP_REPLACE(chapter_number_original, '[^0-9\.]', ''), '.', 1) AS UNSIGNED) AS int_part,
+                CAST(SUBSTRING_INDEX(REGEXP_REPLACE(chapter_number_original, '[^0-9\.]', ''), '.', -1) AS UNSIGNED) AS decimal_part")
+            ->orderBy('int_part')
+            ->orderBy('decimal_part');
     }
     public function comicChapterLast()
     {
         return $this->hasONe(ComicChapter::class, 'comic_id', 'id')
-        ->orderByRaw("LPAD(chapter_number_original, 10, '0') DESC");
+            ->selectRaw("*, 
+                CAST(SUBSTRING_INDEX(REGEXP_REPLACE(chapter_number_original, '[^0-9\.]', ''), '.', 1) AS UNSIGNED) AS int_part,
+                CAST(SUBSTRING_INDEX(REGEXP_REPLACE(chapter_number_original, '[^0-9\.]', ''), '.', -1) AS UNSIGNED) AS decimal_part")
+            ->orderByDesc('int_part')
+            ->orderByDesc('decimal_part');
     }
     public function comicChapterAll()
     {
