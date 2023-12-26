@@ -31,10 +31,9 @@ class ReaderController extends Controller
         SEOMeta::setDescription($setting->site_description);
         OpenGraph::setDescription($setting->site_description);
         OpenGraph::setTitle($setting->site_title);
-        $getComics = Comic::orderBy('updated_at', 'DESC')
+        $comics = Comic::orderBy('updated_at', 'DESC')
             ->take(20)
             ->get();
-        $comics = [];
         $comicSlider = Comic::where('slider', 'Yes')
             ->with('comicGenres')
             ->get();
