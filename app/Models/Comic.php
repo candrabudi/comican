@@ -19,18 +19,18 @@ class Comic extends Model
     public function comicChapter()
     {
         return $this->hasMany(ComicChapter::class, 'comic_id', 'id')
-            ->orderBy('chapter_number_original', 'DESC')
+            ->orderByRaw("LPAD(chapter_number_original, 10, '0') DESC")
             ->take(2);
     }
     public function comicChapterFirst()
     {
         return $this->hasONe(ComicChapter::class, 'comic_id', 'id')
-            ->orderBy('chapter_number_original', 'ASC');
+            ->orderByRaw("LPAD(chapter_number_original, 10, '0') ASC");
     }
     public function comicChapterLast()
     {
         return $this->hasONe(ComicChapter::class, 'comic_id', 'id')
-            ->orderBy('chapter_number_original', 'DESC');
+        ->orderByRaw("LPAD(chapter_number_original, 10, '0') DESC");
     }
     public function comicChapterAll()
     {
