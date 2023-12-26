@@ -32,6 +32,7 @@
                                             title="{{ $comic->title }}">
                                             <span>{{ $comic->title }}</span>
                                         </a>
+                                       
 
                                         <ul class="{{ $comic->type }}">
                                             @foreach ($comic->comicChapter as $ch)

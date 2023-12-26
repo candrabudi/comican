@@ -5,7 +5,7 @@
             <div class="bigcover">
                 <div class="bigbanner"
                     style="
-                    background-image: url('/storage/{{ $comic->thumb }}');
+                    background-image: url('{{ $base64Image }}');
                     background-size: cover;
                     background-position: top center;
                 ">
@@ -28,8 +28,8 @@
                                 <div class="seriestucontl">
                                     <div class="thumb">
                                         <img data-lazyloaded="1" data-placeholder-resp="214x310"
-                                            src="/storage/{{ $comic->thumb }}" width="214" height="310"
-                                            data-src="/storage/{{ $comic->thumb }}" class="attachment- size- wp-post-image"
+                                            src="{{ $base64Image }}" width="214" height="310"
+                                            data-src="{{ $base64Image }}" class="attachment- size- wp-post-image"
                                             alt="{{ $comic->title }}" title="{{ $comic->title }}" itemprop="image"
                                             decoding="async" fetchpriority="high" />
                                         @if ($comic->color == 'Yes')

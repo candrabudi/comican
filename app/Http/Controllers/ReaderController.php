@@ -16,7 +16,9 @@ use SEO;
 use SEOMeta;
 use OpenGraph;
 // use Imagecow\Image;
-use Intervention\Image\ImageManagerStatic as Image;
+// use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 class ReaderController extends Controller
 {
     public function index()
@@ -29,10 +31,10 @@ class ReaderController extends Controller
         SEOMeta::setDescription($setting->site_description);
         OpenGraph::setDescription($setting->site_description);
         OpenGraph::setTitle($setting->site_title);
-        $comics = Comic::orderBy('updated_at', 'DESC')
+        $getComics = Comic::orderBy('updated_at', 'DESC')
             ->take(20)
             ->get();
-
+        $comics = [];
         $comicSlider = Comic::where('slider', 'Yes')
             ->with('comicGenres')
             ->get();
@@ -84,17 +86,10 @@ class ReaderController extends Controller
         }
 
         $widthRating = $this->formatNumber($comic->rating);
-        // $imagePath = public_path('/storage/'.$comic->thumb);
-    
-        // // return phpinfo();
-        // $compressedImageData = Image::make($imagePath)->encode('data-url', 60);
-
-        // // Encode hasil kompresi sebagai base64
-        // $base64Image = base64_encode($compressedImageData);
-        
-        // // Output hasilnya
-        // return $base64Image;
-        return view('comics.pages.detail', compact('comic', 'widthRating'));
+        $imagePath = public_path('/storage/'.$comic->thumb);
+        $image = Image::make($imagePath);
+        $base64Image = $image->encode('data-url')->encoded;
+        return view('comics.pages.detail', compact('comic', 'widthRating', 'base64Image'));
     }
 
 
