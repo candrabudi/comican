@@ -536,7 +536,9 @@ class MangaController extends Controller
 
     public function crawlComicChapter($url){
         try {
-            $response = Http::get($url);
+            $response = Http::withHeaders([
+                'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123 Safari/537.36',
+            ])->get($url);
             $html = $response->body();
     
             $crawler = new Crawler($html);

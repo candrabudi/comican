@@ -1,4 +1,4 @@
-<div class="th">
+<div class="th" style="background: #0a3d62;">
     <div class="centernav bound">
         <div class="shme"><i class="fa fa-bars" aria-hidden="true"></i></div>
 
@@ -7,7 +7,7 @@
                 <span class="logos">
                     <a title="Seataku - Baca Komik Terlengkap dan Terbaru Hari Ini" itemprop="url"
                         href="https://seataku.com/">
-                        <img src="https://seataku.com/wp-content/uploads/2023/11/seataku.png" 
+                        <img src="{{ asset('comics/images/seataku.png') }}" 
                             width="195" 
                             height="50" 
                             alt="Seataku - Baca Komik Terlengkap dan Terbaru Hari Ini" />

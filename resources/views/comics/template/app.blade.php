@@ -23,15 +23,15 @@
         .home-genres,
         .home-genres.gennom2 .alman a,
         .lightmode .home-genres.gennom2 {
-            background: #392f77;
+            background: #0a3d62;
         }
 
         .home-genres .alman a {
-            color: #392f77;
+            color: #0a3d62;
         }
 
         .home-genres.gennom2 {
-            border-color: #392f77;
+            border-color: #0a3d62;
         }
     </style>
     <script type="text/javascript" src="{{ asset('comics/js/jquery.min.js') }}" id="jquery-js"></script>

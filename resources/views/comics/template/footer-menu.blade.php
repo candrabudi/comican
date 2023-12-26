@@ -1,4 +1,4 @@
-<div class="footermenu">
+<div class="footermenu" style="background: #0a3d62;">
     <div class="menu-manga-container">
         <ul id="menu-manga-1" class="menu">
             <li
