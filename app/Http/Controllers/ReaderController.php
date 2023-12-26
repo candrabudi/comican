@@ -83,7 +83,7 @@ class ReaderController extends Controller
             ]);
         }
 
-        // $widthRating = $this->formatNumber($comic->rating);
+        $widthRating = $this->formatNumber($comic->rating);
         // $imagePath = public_path('/storage/'.$comic->thumb);
     
         // // return phpinfo();
