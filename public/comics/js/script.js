@@ -1,15 +1,4 @@
-/* <![CDATA[ */
-window._wpemojiSettings = {
-    baseUrl: "https://s.w.org/images/core/emoji/14.0.0/72x72/",
-    ext: ".png",
-    svgUrl: "https://s.w.org/images/core/emoji/14.0.0/svg/",
-    svgExt: ".svg",
-    source: {
-        concatemoji:
-            "https://seataku.com/wp-includes/js/wp-emoji-release.min.js?ver=6.4.2",
-    },
-};
-/*! This file is auto-generated */
+
 !(function (i, n) {
     var o, s, e;
     function c(e) {
@@ -167,56 +156,3 @@ window._wpemojiSettings = {
 var sf_templates = '<a href="{search_url_escaped}">View All Results</a>';
 var sf_position = "0";
 var sf_input = ".search-live";
-// jQuery(document).ready(function () {
-//     jQuery(sf_input).ajaxyLiveSearch({
-//         expand: false,
-//         searchUrl: "https://seataku.com/?s=%s",
-//         text: "Search",
-//         delay: 500,
-//         iwidth: 180,
-//         width: 350,
-//         ajaxUrl: "https://seataku.com/wp-admin/admin-ajax.php",
-//         rtl: 0,
-//     });
-//     jQuery(".live-search_ajaxy-selective-input").keyup(function () {
-//         var width = jQuery(this).val().length * 8;
-//         if (width < 50) {
-//             width = 50;
-//         }
-//         jQuery(this).width(width);
-//     });
-//     jQuery(".live-search_ajaxy-selective-search").click(function () {
-//         jQuery(this).find(".live-search_ajaxy-selective-input").focus();
-//     });
-//     jQuery(".live-search_ajaxy-selective-close").click(function () {
-//         jQuery(this).parent().remove();
-//     });
-// });
-
-// jQuery.event.special.touchstart = {
-//     setup: function (_, ns, handle) {
-//         this.addEventListener("touchstart", handle, {
-//             passive: !ns.includes("noPreventDefault"),
-//         });
-//     },
-// };
-// jQuery.event.special.touchmove = {
-//     setup: function (_, ns, handle) {
-//         this.addEventListener("touchmove", handle, {
-//             passive: !ns.includes("noPreventDefault"),
-//         });
-//     },
-// };
-// jQuery.event.special.wheel = {
-//     setup: function (_, ns, handle) {
-//         this.addEventListener("wheel", handle, { passive: true });
-//     },
-// };
-// jQuery.event.special.mousewheel = {
-//     setup: function (_, ns, handle) {
-//         this.addEventListener("mousewheel", handle, { passive: true });
-//     },
-// };
-
-// ts_darkmode.listen();
-
