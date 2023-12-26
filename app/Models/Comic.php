@@ -48,8 +48,8 @@ class Comic extends Model
     {
         return $this->hasMany(ComicChapter::class, 'comic_id', 'id')
             ->selectRaw("*, 
-                CAST(SUBSTRING_INDEX(REGEXP_REPLACE(chapter_number_original, '[^0-9\.]', ''), '.', 1) AS UNSIGNED) AS int_part,
-                CAST(SUBSTRING_INDEX(REGEXP_REPLACE(chapter_number_original, '[^0-9\.]', ''), '.', -1) AS UNSIGNED) AS decimal_part")
+                CAST(SUBSTRING_INDEX(REGEXP_REPLACE(chapter_number_original, '[^0-9]', ''), '.', 1) AS UNSIGNED) AS int_part,
+                CAST(SUBSTRING_INDEX(REGEXP_REPLACE(chapter_number_original, '[^0-9]', ''), '.', -1) AS UNSIGNED) AS decimal_part")
             ->orderByDesc('int_part')
             ->orderByDesc('decimal_part');
     }

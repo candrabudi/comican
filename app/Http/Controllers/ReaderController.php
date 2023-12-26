@@ -15,6 +15,8 @@ use DB;
 use SEO;
 use SEOMeta;
 use OpenGraph;
+// use Imagecow\Image;
+use Intervention\Image\ImageManagerStatic as Image;
 class ReaderController extends Controller
 {
     public function index()
@@ -82,6 +84,16 @@ class ReaderController extends Controller
         }
 
         $widthRating = $this->formatNumber($comic->rating);
+        $imagePath = public_path('/storage/'.$comic->thumb);
+    
+        // return phpinfo();
+        $compressedImageData = Image::make($imagePath)->encode('data-url', 60);
+
+        // Encode hasil kompresi sebagai base64
+        $base64Image = base64_encode($compressedImageData);
+        
+        // Output hasilnya
+        return $base64Image;
         return view('comics.pages.detail', compact('comic', 'widthRating'));
     }
 
