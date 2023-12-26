@@ -19,6 +19,21 @@
     <link rel="stylesheet" id="swiper-css"
         href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css?ver=4.5.1" type="text/css"
         media="all" />
+    <style>
+        .home-genres,
+        .home-genres.gennom2 .alman a,
+        .lightmode .home-genres.gennom2 {
+            background: #392f77;
+        }
+
+        .home-genres .alman a {
+            color: #392f77;
+        }
+
+        .home-genres.gennom2 {
+            border-color: #392f77;
+        }
+    </style>
     <script type="text/javascript" src="{{ asset('comics/js/jquery.min.js') }}" id="jquery-js"></script>
     <script type="text/javascript" src="{{ asset('comics/js/function.js') }}" id="tsfn_scripts-js"></script>
     <script type="text/javascript" src="{{ asset('comics/js/tab.js') }}" id="tabs-js"></script>
