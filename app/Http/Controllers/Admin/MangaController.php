@@ -207,6 +207,8 @@ class MangaController extends Controller
                     $storeChapterLink->chapter_realease =  Carbon::parse($chapter['chapter_date'])->addMinutes(2)->format('Y-m-d H:i:s');
                     $storeChapterLink->status = 0;
                     $storeChapterLink->save();
+                    $storeChapterLink->fresh();
+                    CrawlAllChapterJob::dispatch($storeChapterLink);
                 }
             }
 
