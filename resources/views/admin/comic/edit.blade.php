@@ -115,6 +115,7 @@
                         <th width="50">No.</th>
                         <th width="160">Chapter</th>
                         <th>Judul Chapter</th>
+                        <th>Tanggal Upload</th>
                         <th width="180">Aksi</th>
                     </tr>
                 </thead>
@@ -143,6 +144,9 @@
                 },
                 {
                     data: 'chapter_title'
+                },
+                {
+                    data: 'created_at'
                 },
                 {
                     data: 'id',

@@ -72,6 +72,7 @@ class MangaController extends Controller
                 'id' => $new['id'],
                 'chapter_number' => $new['chapter_number'],
                 'chapter_title' => $new['chapter_title'],
+                'created_at' => $new['created_at'],
             ]; 
         }, $chapters);
 
