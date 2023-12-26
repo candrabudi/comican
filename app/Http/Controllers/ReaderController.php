@@ -83,17 +83,17 @@ class ReaderController extends Controller
             ]);
         }
 
-        $widthRating = $this->formatNumber($comic->rating);
-        $imagePath = public_path('/storage/'.$comic->thumb);
+        // $widthRating = $this->formatNumber($comic->rating);
+        // $imagePath = public_path('/storage/'.$comic->thumb);
     
-        // return phpinfo();
-        $compressedImageData = Image::make($imagePath)->encode('data-url', 60);
+        // // return phpinfo();
+        // $compressedImageData = Image::make($imagePath)->encode('data-url', 60);
 
-        // Encode hasil kompresi sebagai base64
-        $base64Image = base64_encode($compressedImageData);
+        // // Encode hasil kompresi sebagai base64
+        // $base64Image = base64_encode($compressedImageData);
         
-        // Output hasilnya
-        return $base64Image;
+        // // Output hasilnya
+        // return $base64Image;
         return view('comics.pages.detail', compact('comic', 'widthRating'));
     }
 
