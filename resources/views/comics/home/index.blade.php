@@ -18,7 +18,7 @@
                                         <a rel="382" class="series"
                                             href="{{ route('reader.comic.detail', [strtolower($comic->type), $comic->slug]) }}"
                                             title="{{ $comic->alternative }}"><img data-lazyloaded="1"
-                                                data-placeholder-resp="214x305" src="/storage/{{ $comic->thumb }}"
+                                                data-placeholder-resp="214x305" src="/storage/{{ $comic->thumb }}?width=214&height=305"
                                                 data-src="/storage/{{ $comic->thumb }}"
                                                 class="ts-post-image wp-post-image attachment-medium size-medium"
                                                 loading="lazy" title="{{ $comic->alternative }}"
