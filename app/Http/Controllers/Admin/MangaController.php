@@ -25,6 +25,9 @@ use Str;
 use Auth;
 
 use App\Jobs\CrawlAllChapterJob;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Bus\Batch;
+use Illuminate\Support\Facades\Bus;
 class MangaController extends Controller
 {
     public function index()
@@ -207,8 +210,8 @@ class MangaController extends Controller
                     $storeChapterLink->chapter_realease =  Carbon::parse($chapter['chapter_date'])->addMinutes(2)->format('Y-m-d H:i:s');
                     $storeChapterLink->status = 0;
                     $storeChapterLink->save();
-                    $storeChapterLink->fresh();
-                    CrawlAllChapterJob::dispatch($storeChapterLink);
+                    // $storeChapterLink->fresh();
+                    // CrawlAllChapterJob::dispatch($storeChapterLink);
                 }
             }
 
@@ -319,20 +322,32 @@ class MangaController extends Controller
     
     public function crawlAllChapterGlobal(Request $request)
     {   
-        $chapters = ComicChapterLink::where('status', 0)
-            ->orderBy('id', 'DESC')
-            ->get();
-
-        foreach ($chapters as $chapter) {
-            CrawlAllChapterJob::dispatch($chapter);
+        $cacheKey = 'global_crawl_lock';
+        $cacheDuration = 60;
+    
+        if (!Cache::has($cacheKey)) {
+            Cache::put($cacheKey, true, $cacheDuration);
+    
+            $chapters = ComicChapterLink::where('status', 0)
+                ->orderBy('id', 'DESC')
+                ->get();
+    
+            $startTime = now();
+            foreach ($chapters as $chapter) {
+                if(now()->diffInRealSeconds($startTime) >= 55) {
+                    break; // Jika hampir mencapai 1 menit, hentikan iterasi
+                }
+                CrawlAllChapterJob::dispatch($chapter);
+            }
+    
+            Cache::forget($cacheKey); // Hapus kunci setelah iterasi selesai
+    
+            return response()->json(['message' => 'Proses selesai']);
         }
-
-        return response()
-            ->json([
-                'message' => 'success'
-            ]);
-        
+    
+        return response()->json(['message' => 'Endpoint sedang diproses. Coba lagi nanti.'], 429);
     }
+    
 
     public function crawlComicKomikindo($url){
         $response = Http::get($url);

@@ -15,6 +15,7 @@ class CrawlAllChapterJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $chapter;
+    public $batchId; // Menambahkan properti batchId
 
     public function __construct($chapter)
     {
@@ -24,6 +25,9 @@ class CrawlAllChapterJob implements ShouldQueue
     public function handle()
     {
         if ($this->chapter) {
+            if (isset($this->batchId)) {
+                Log::info("Batch ID: " . $this->batchId); // Menggunakan batchId di dalam handle()
+            }
             event(new CrawlChapterEvent($this->chapter->id));
         } else {
             Log::info("Tidak ada data yang diberikan. Job tidak dijalankan.");

@@ -32,7 +32,9 @@ Route::get('/baca/{type}', [ReaderController::class, 'viewComicType'])->name('re
 Route::get('/error', [PageController::class, 'noFound'])->name('page.notfound');
 
 Route::post('/login/process', [AuthController::class, 'loginProcess'])->name('login.process');
-Route::get('/global/crawl/all/chapter', [MangaController::class, 'crawlAllChapterGlobal'])->name('sea.comic.crawl.chapter.all');
+Route::get('/global/crawl/all/chapter', [MangaController::class, 'crawlAllChapterGlobal'])
+    ->name('sea.comic.crawl.chapter.all')
+    ->middleware('check.access.time');
 
 Route::get('/generate-sitemap', function () {
     GenerateSitemap::dispatch();
