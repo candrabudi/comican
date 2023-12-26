@@ -134,7 +134,7 @@
             processing: true,
             serverSide: true,
             responsive: true,
-            ajax: '{!! route('sea.comic.datatable.comic') !!}',
+            ajax: '{!! route('sea.comic.datatable.comic', $comic->id) !!}',
             columns: [{
                     data: 'no'
                 },
