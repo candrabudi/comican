@@ -5,9 +5,9 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MangaController;
 use App\Http\Controllers\Admin\SettingController;
-use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\HtmlController;
 use App\Http\Controllers\ReaderController;
+use App\Http\Controllers\PageController;
 use App\Jobs\GenerateSitemap;
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ Route::get('/semua/komik/{page}', [ReaderController::class, 'viewAll'])->name('r
 Route::get('/genre/{slug}/{page}', [ReaderController::class, 'pageGenre'])->name('reader.genre.page');
 Route::get('/baca/{type}', [ReaderController::class, 'viewComicType'])->name('reader.page.comic');
 
-Route::get('/error', [PageController::class, 'noFound'])->name('page.notfound');
+Route::get('/dmca', [PageController::class, 'dmca'])->name('page.dmca');
 
 Route::post('/login/process', [AuthController::class, 'loginProcess'])->name('login.process');
 Route::get('/global/crawl/all/chapter', [MangaController::class, 'crawlAllChapterGlobal'])

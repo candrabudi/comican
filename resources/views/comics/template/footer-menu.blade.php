@@ -9,7 +9,7 @@
                 <a href="/manga" itemprop="url">Manga List</a>
             </li>
             <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10">
-                <a href="/bookmark" itemprop="url">Bookmark</a>
+                <a href="/dmca" itemprop="url">DMCA</a>
             </li>
         </ul>
     </div>
