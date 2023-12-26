@@ -6,8 +6,7 @@
                 <div class="postbody">
                     <div class="bixbox">
                         <div class="releases">
-                            <h2>Terakhir Update Komik</h2><a class="vl" href="{{ route('reader.comic.page', 1) }}">Lihat
-                                Semua</a>
+                            <h2>DMCA</a>
                         </div>
                         <div class="listupd stsven">
                             <p>If you have reason to believe that one of our content is violating your copyrights or some of Search Results references to illegal contents, please send a email for us. Please allow up to a 1-5 business days for an email response. Note that emailing your complaint to other parties such as our Internet Service Provider, Hosting Provider, and other third party will not expedite your request and may result in a delayed response due to the complaint not being filed properly.</p>

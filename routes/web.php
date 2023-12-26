@@ -30,6 +30,7 @@ Route::get('/genre/{slug}/{page}', [ReaderController::class, 'pageGenre'])->name
 Route::get('/baca/{type}', [ReaderController::class, 'viewComicType'])->name('reader.page.comic');
 
 Route::get('/dmca', [PageController::class, 'dmca'])->name('page.dmca');
+Route::get('/privacy-policy', [PageController::class, 'privacyPolicy'])->name('page.privacyPolicy');
 
 Route::post('/login/process', [AuthController::class, 'loginProcess'])->name('login.process');
 Route::get('/global/crawl/all/chapter', [MangaController::class, 'crawlAllChapterGlobal'])

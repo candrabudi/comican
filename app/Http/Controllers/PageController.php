@@ -16,4 +16,13 @@ class PageController extends Controller
         OpenGraph::setTitle('Seataku - DMCA');
         return view('comics.pages.dmca');
     }
+
+    public function privacyPolicy()
+    {
+        SEOMeta::setTitle('Seataku - Privacy Policy');
+        SEOMeta::setDescription('Seataku - Privacy Policy');
+        OpenGraph::setDescription('Seataku - Privacy Policy');
+        OpenGraph::setTitle('Seataku - Privacy Policy');
+        return view('comics.pages.privacypolicy');
+    }
 }

@@ -11,6 +11,9 @@
             <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10">
                 <a href="/dmca" itemprop="url">DMCA</a>
             </li>
+            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10">
+                <a href="/privacy-policy" itemprop="url">Privacy Policy</a>
+            </li>
         </ul>
     </div>
 </div>
