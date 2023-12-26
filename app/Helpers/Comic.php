@@ -19,7 +19,7 @@ function getTopComicsWeek()
     ->get();
 
     if ($topComicsWeek->count() < 10) {
-        $take = 12 - count($topComicsWeek);
+        $take = 10 - count($topComicsWeek);
         $randomComics = Comic::orderBy('rating', 'DESC')
             ->take(10 - count($topComicsWeek) + $take)
             ->get();
@@ -43,7 +43,7 @@ function getTopComicsMonth()
 
     if ($topComicsMonth->count() < 10) {
         $randomComics = Comic::inRandomOrder()
-            ->take(12 - $topComicsMonth->count())
+            ->take(10 - $topComicsMonth->count())
             ->get();
 
         $topComicsMonth = $topComicsMonth->merge($randomComics);
