@@ -9,7 +9,7 @@
                                 <div class="sliderinfolimit">
                                     <div class="slidlc">
                                         Chapter:
-                                        {{ str_replace('Chapter ', '', $slider->comicChapterLast->chapter_number) }}
+                                        {{ $slider->comicChapterLast ? str_replace('Chapter ', '', $slider->comicChapterLast->chapter_number) : '' }}
                                     </div>
                                     <a href="{{ $slider->slug }}">
                                         <span class="name">{{ $slider->title }}</span>
