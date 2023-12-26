@@ -35,7 +35,7 @@ class Comic extends Model
     public function comicChapterAll()
     {
         return $this->hasMany(ComicChapter::class, 'comic_id', 'id')
-            ->orderBy('chapter_number_original', 'DESC');
+            ->orderByRaw("LPAD(chapter_number_original, 10, '0') DESC");
     }
     public function comicViews(): HasMany
     {
